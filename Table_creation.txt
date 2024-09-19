@@ -227,3 +227,326 @@ VALUES
     'Off Campus'
   );
 
+-- CREATING OWNER TABLE 
+
+create table owner(
+	OwnerId int not null,
+	OwnerFName varchar(50) not null,
+	OwnerLName varchar(50) not null,
+	Address varchar(100) not null,
+	DateOfBith date not null,
+	ContactNumber varchar(15) not null,
+	primary key (OwnerId)
+);
+
+-- Insert 10 rows into the owner table
+
+INSERT INTO owner (
+	OwnerId,
+	OwnerFName, 
+	OwnerLName, 
+	Address, 
+	DateOfBith, 
+	ContactNumber
+)
+VALUES 
+   (
+	1, 
+	'Arun', 
+	'Nair', 
+	'Kowdiar, 
+	Trivandrum', 
+	'1985-07-14', 
+	'9847123456'
+    ),
+    (
+	2,
+	 'Anjali',
+	 'Menon',
+	 'Ulloor,
+	 Trivandrum',
+	 '1990-03-22',
+	 '9567456123'
+     ),
+    (
+	3,
+	 'Suresh',
+	 'Pillai',
+	 'Pattom,
+	 Trivandrum',
+	 '1980-11-05',
+	 '9746123456'
+     ),
+     (
+	4,
+	 'Lekshmi',
+	 'Raj',
+	 'Peroorkada,
+	 Trivandrum',
+	 '1992-06-15',
+	 '9896543210'
+     ),
+     (
+	5,
+	 'Manoj',
+ 	'Varma',
+	 'Sreekaryam,
+	 Trivandrum',
+	 '1987-12-20',
+	 '9637412580'
+     ),
+     (
+	6,
+	 'Priya',
+	 'Krishnan',
+	 'Kazhakootam,
+	 Trivandrum',
+	 '1995-01-18',
+	 '9078541236'
+     ),
+     (
+	7,
+	 'Vishnu',
+	 'Ravi',
+	 'Ambalamukku,
+	 Trivandrum',
+	 '1988-09-09',
+	 '9847012345'
+     ),
+     (
+	8,
+	 'Deepa',
+	 'Sankar',
+	 'Nalanchira,
+	 Trivandrum',
+	 '1991-05-28',
+	 '9567890123'
+      ),
+      (
+	9,
+	 'Gopal',
+	 'Das',
+	 'Medical College,
+	 Trivandrum',
+	 '1983-08-12',
+	 '9746127809'
+      );
+      (
+	10,
+	 'Nandini',
+	 'Shankar',
+	 'Kesavadasapuram,
+	 Trivandrum',
+	 '1994-02-03',
+	 '9897564120'
+);
+
+
+
+
+
+
+
+
+-- Create Hostel table
+
+create table hostel(
+    HostelId int not null,
+    HostelName varchar(50) not null,
+    OwnerId int not null,
+    AddressLine1 varchar(60) not null,
+    AddressLine2 varchar(60),
+    City varchar(50) not null,
+    Pincode int not null,
+    State varchar(40) not null,
+    Capacity int not null,
+    Type varchar(10) not null,
+    ContactNumber varchar(15) not null,
+    Rating numeric(4,2),
+    Verification boolean not null,
+    primary key (HostelId),
+    foreign key (OwnerId) references Owner(OwnerId)
+    
+  );
+
+
+
+
+
+
+
+
+-- Insert 10 rows into the hostel table
+
+INSERT INTO hostel (
+    HostelId,
+    HostelName,
+    OwnerId,
+    AddressLine1,
+    AddressLine2,
+    City,
+    Pincode,
+    State,
+    Capacity,
+    Type,
+    ContactNumber,
+    Rating,
+    Verification
+)
+VALUES 
+(
+    1,
+    'Green Meadows',
+    1,
+    'Near Kowdiar Palace',
+    'Kowdiar',
+    'Trivandrum',
+    695003,
+    'Kerala',
+    50,
+    'mens',
+    '9847123456',
+    4.5,
+    TRUE
+),
+
+(
+    2,
+    'Sunshine Women''s Hostel',
+    2,
+    'Ulloor Junction',
+    NULL,
+    'Trivandrum',
+    695011,
+    'Kerala',
+    60,
+    'women',
+    '9567456123',
+    4.8,
+    TRUE
+),
+
+(
+    3,
+    'Blue Hills Hostel',
+    3,
+    'Pattom PO',
+    'Near Marappalam',
+    'Trivandrum',
+    695004,
+    'Kerala',
+    100,
+    'mens',
+    '9746123456',
+    4.2,
+    TRUE
+),
+(
+    4,
+    'Silver Oaks',
+    4,
+    'Peroorkada Junction',
+    NULL,
+    'Trivandrum',
+    695005,
+    'Kerala',
+    80,
+    'mixed',
+    '9896543210',
+    4.7,
+    TRUE
+),
+
+(
+    5,
+    'Palm View Residency',
+    5,
+    'Sreekaryam Main Road',
+    NULL,
+    'Trivandrum',
+    695017,
+    'Kerala',
+    45,
+    'mens',
+    '9637412580',
+    4.4,
+    TRUE
+),
+(
+    6,
+    'Daffodil Women''s Hostel',
+    6,
+    'Near Technopark',
+    'Kazhakootam',
+    'Trivandrum',
+    695582,
+    'Kerala',
+    55,
+    'women',
+    '9078541236',
+    4.9,
+    TRUE
+),
+(
+    7,
+    'The Haven',
+    7,
+    'Ambalamukku',
+    NULL,
+    'Trivandrum',
+    695008,
+    'Kerala',
+    40,
+    'mixed',
+    '9847012345',
+    4.1,
+    TRUE
+),
+(
+    8,
+    'Maple Grove Hostel',
+    8,
+    'Nalanchira PO',
+    'Near St. Thomas College',
+    'Trivandrum',
+    695015,
+    'Kerala',
+    75,
+    'mixed',
+    '9567890123',
+    4.3,
+    TRUE
+),
+(
+    9,
+    'Golden Nest',
+    9,
+    'Medical College Road',
+    NULL,
+    'Trivandrum',
+    695011,
+    'Kerala',
+    90,
+    'mens',
+    '9746127809',
+    4.6,
+    TRUE
+),
+(
+    10,
+    'The Orchid Inn',
+    10,
+    'Kesavadasapuram',
+    'Near Pattom Bridge',
+    'Trivandrum',
+    695004,
+    'Kerala',
+    50,
+    'women',
+    '9897564120',
+    4.5,
+    TRUE
+);
+
+
+
