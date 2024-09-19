@@ -574,6 +574,52 @@ VALUES
     (9, 9, '2024-09-09', '17:45:00', 4, 'Spacious rooms, great value for money.'),
     (10, 10, '2024-09-10', '08:30:00', 1, 'Very poor experience, not recommended.');
 
+CREATE TABLE new_products (
+    ProductId SERIAL PRIMARY KEY,     
+    ProductName VARCHAR(255),         
+    Category VARCHAR(255),            
+    Price FLOAT,                      
+    Vendor VARCHAR(255)               
+)
+INSERT INTO new_products (ProductId, ProductName, Category, Price, Vendor)
+VALUES
+(100, 'Single Bed', 'Furniture', 199.99, 'Hostel Supplies Co.'),
+(101, 'Study Desk', 'Furniture', 89.50, 'Dorm Furniture Ltd.'),
+(102, 'Portable Fan', 'Electronics', 25.99, 'Hostel Appliances Inc.'),
+(103, 'Water Heater', 'Electronics', 49.99, 'Hostel Appliances Inc.'),
+(104, 'LED Lamp', 'Electronics', 15.45, 'Dorm Essentials'),
+(105, 'Mattress', 'Bedding', 129.99, 'SleepWell Corp.'),
+(106, 'Pillows (Set of 2)', 'Bedding', 19.99, 'ComfortSleep Inc.'),
+(107, 'Closet Organizer', 'Furniture', 39.99, 'Space Savers'),
+(108, 'Curtains', 'Home Decor', 22.99, 'Dorm Decor Ltd.'),
+(109, 'Mini Fridge', 'Electronics', 149.99, 'Appliance World');
+
+
+
+CREATE TABLE used_products (
+    ProductId SERIAL PRIMARY KEY,    
+    ProductName VARCHAR(255),         
+    Category VARCHAR(255),            
+    Price FLOAT,                      
+    Vendor VARCHAR(255),              
+    StudentId INT                    
+ );
+
+
+INSERT INTO used_products (ProductId, ProductName, Category, Price, Vendor, StudentId)
+VALUES
+(100, 'Used Single Bed', 'Furniture', 120.00, 'StudentSeller Co.', 1),
+(101, 'Second-Hand Desk Lamp', 'Electronics', 10.00, 'Dorm Supplies', 2),
+(102, 'Old Mattress', 'Bedding', 50.00, 'StudentSeller Inc.', 3),
+(103, 'Closet Organizer (Used)', 'Furniture', 20.00, 'Space Savers', 4),
+(104, 'Curtains (Pre-Owned)', 'Home Decor', 12.99, 'Student Decor Mart', 1),
+(105, 'Mini Fridge (Second-Hand)', 'Electronics', 75.00, 'Appliance World', 3),
+(106, 'Used Study Chair', 'Furniture', 35.00, 'Hostel Essentials', 2),
+(107, 'Second-Hand Washing Machine', 'Electronics', 100.00, 'Hostel Supplies Co.', 1),
+(108, 'Pre-Owned Bookshelf', 'Furniture', 45.00, 'Dorm Furniture Ltd.', 2),
+(109, 'Second-Hand Microwave', 'Electronics', 55.00, 'Appliance World', 3);
+
+
 
 
 
