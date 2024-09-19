@@ -547,6 +547,33 @@ VALUES
     4.5,
     TRUE
 );
+create table for user review
+CREATE TABLE user_review (
+    HostelId INT NOT NULL,
+    studentid INT NOT NULL,
+    review_date DATE NOT NULL,
+    review_time TIME NOT NULL,
+    rating INT NOT NULL,
+    review VARCHAR(100),
+    FOREIGN KEY (studentid) REFERENCES student(studentid),
+    FOREIGN KEY (HostelId) REFERENCES hostel(HostelId)
+);
+insert userreview:
+INSERT INTO user_review (
+    HostelId, studentid, review_date, review_time, rating, review
+)
+VALUES
+    (1, 1, '2024-09-01', '12:30:00', 5, 'Great place to stay!'),
+    (2, 2, '2024-09-02', '14:45:00', 4, 'Comfortable and clean.'),
+    (3, 3, '2024-09-03', '09:15:00', 3, 'Average experience, could be better.'),
+    (4, 4, '2024-09-04', '11:00:00', 5, 'Excellent staff and amenities.'),
+    (5, 5, '2024-09-05', '10:20:00', 2, 'Needs better maintenance.'),
+    (6, 6, '2024-09-06', '16:10:00', 4, 'Nice environment but food options limited.'),
+    (7, 7, '2024-09-07', '13:00:00', 3, 'Affordable but basic facilities.'),
+    (8, 8, '2024-09-08', '18:30:00', 5, 'Loved the location and services!'),
+    (9, 9, '2024-09-09', '17:45:00', 4, 'Spacious rooms, great value for money.'),
+    (10, 10, '2024-09-10', '08:30:00', 1, 'Very poor experience, not recommended.');
+
 
 
 
