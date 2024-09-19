@@ -549,4 +549,157 @@ VALUES
 );
 
 
+-- Create Rooms table
+
+create table Rooms (
+  RoomId int not null, 
+  HostelId int not null, 
+  NumberOfRooms int not null, 
+  RoomType varchar(20) not null, 
+  Capacity int not null,
+  CurrentVacancy int not null, 
+  ACNonAC boolean not null, 
+  Rent decimal(10, 2) not null,
+  primary key (RoomId,HostelId),
+  foreign key (HostelId) references hostel (hostelid)
+  
+);
+
+
+
+
+
+
+
+
+
+
+
+-- Insert 10 rows into the Rooms table
+
+
+
+
+
+INSERT INTO Rooms (
+  RoomId,
+  HostelId,
+  NumberOfRooms,
+  RoomType,
+  Capacity,
+  CurrentVacancy,
+  ACNonAC,
+  Rent
+) VALUES 
+(
+  1,
+  1,  -- HostelId referencing 'Green Meadows'
+  10,
+  'Single',
+  1,
+  5,
+  TRUE,
+  3500.00
+),
+(
+  2,
+  1,  -- HostelId referencing 'Green Meadows'
+  20,
+  'Double',
+  2,
+  8,
+  FALSE,
+  2750.00
+),
+(
+  3,
+  2,  -- HostelId referencing 'Sunshine Women''s Hostel'
+  15,
+  'Single',
+  1,
+  4,
+  TRUE,
+  2500.00
+),
+(
+  4,
+  3,  -- HostelId referencing 'Blue Hills Hostel'
+  25,
+  'Suite',
+  4,
+  10,
+  TRUE,
+  4000.00
+),
+(
+  5,
+  4,  -- HostelId referencing 'Silver Oaks'
+  18,
+  'Double',
+  2,
+  7,
+  FALSE,
+  2500.00
+),
+(
+  6,
+  5,  -- HostelId referencing 'Palm View Residency'
+  12,
+  'Single',
+  1,
+  6,
+  TRUE,
+  3250.00
+),
+(
+  7,
+  6,  -- HostelId referencing 'Daffodil Women''s Hostel'
+  20,
+  'Double',
+  2,
+  8,
+  TRUE,
+  3000.00
+),
+(
+  8,
+  7,  -- HostelId referencing 'The Haven'
+  10,
+  'Single',
+  1,
+  3,
+  FALSE,
+  3000.00
+),
+(
+  9,
+  8,  -- HostelId referencing 'Maple Grove Hostel'
+  22,
+  'Double',
+  2,
+  10,
+  TRUE,
+  3000.00
+),
+(
+  10,
+  9,  -- HostelId referencing 'Golden Nest'
+  30,
+  'Suite',
+  4,
+  12,
+  TRUE,
+  3200.00
+),
+(
+  11,
+  10,  -- HostelId referencing 'The Orchid Inn'
+  14,
+  'Single',
+  1,
+  5,
+  FALSE,
+  2550.00
+);
+
 
