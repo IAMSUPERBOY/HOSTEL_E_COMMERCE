@@ -1,344 +1,344 @@
 create table student(
-    studentid int not null,
-    studentfname varchar(50) not null,
-    studentlname varchar(50) null,
-    institutionname varchar(100) not null,
-    yearofstudy int not null,
-    age int not null,
-    gender varchar(4) null,
-    guardianname varchar(50) not null,
-    phonenumber varchar(50) unique null,
-    addressline1 varchar(40) null,
-    addressline2 varchar(40) null,
-    city varchar(40) not null,
-    pincode int not null,
-    state varchar(40) not null,
-    currentresidence varchar(40) null,
-    primary key (studentid)
-  ) 
+  studentid int not null,
+  studentfname varchar(50) not null,
+  studentlname varchar(50) null,
+  institutionname varchar(100) not null,
+  yearofstudy int not null,
+  age int not null,
+  gender varchar(4) null,
+  guardianname varchar(50) not null,
+  phonenumber varchar(50) unique null,
+  addressline1 varchar(40) null,
+  addressline2 varchar(40) null,
+  city varchar(40) not null,
+  pincode int not null,
+  state varchar(40) not null,
+  currentresidence varchar(40) null,
+  primary key (studentid)
+) 
 
 
 
 /* INSERT INTO student (
-    studentid,
-    studentfname,
-    studentlname,
-    institutionname,
-    yearofstudy,
-    age,
-    gender,
-    guardianname,
-    phonenumber,
-    addressline1,
-    addressline2,
-    city,
-    pincode,
-    state,
-    currentresidence
+  studentid,
+  studentfname,
+  studentlname,
+  institutionname,
+  yearofstudy,
+  age,
+  gender,
+  guardianname,
+  phonenumber,
+  addressline1,
+  addressline2,
+  city,
+  pincode,
+  state,
+  currentresidence
 )
 VALUES
-  (
-    1,
-    'Arjun',
-    'Nair',
-    'Cochin University of Science and Technology',
-    2,
-    20,
-    'M',
-    'Suresh Nair',
-    '0484-555-1212',
-    '25 MG Road',
-    '',
-    'Kochi',
-    682016,
-    'Kerala',
-    'On Campus'
-  ),
-  (
-    2,
-    'Anjali',
-    'Krishnan',
-    'National Institute of Technology, Calicut',
-    3,
-    21,
-    'F',
-    'Krishna Kumar',
-    '0495-555-3434',
-    '47 NH Bypass',
-    'Near Kattangal',
-    'Kozhikode',
-    673601,
-    'Kerala',
-    'Off Campus'
-  ),
-  (
-    3,
-    'Vishnu',
-    'Ravi',
-    'Indian Institute of Technology, Palakkad',
-    1,
-    19,
-    'M',
-    'Ravi Sankar',
-    '0491-555-5678',
-    '19 Palakkad Main Road',
-    '',
-    'Palakkad',
-    678001,
-    'Kerala',
-    'On Campus'
-  ),
-  (
-    4,
-    'Megha',
-    'Pillai',
-    'University of Kerala',
-    4,
-    22,
-    'F',
-    'Anil Pillai',
-    '0471-555-7878',
-    '89 Vellayambalam',
-    'Flat 3A',
-    'Thiruvananthapuram',
-    695014,
-    'Kerala',
-    'Off Campus'
-  ),
-  (
-    5,
-    'Ajith',
-    'Menon',
-    'Rajagiri College of Social Sciences',
-    2,
-    20,
-    'M',
-    'Radha Menon',
-    '0484-555-9090',
-    '12 Kakkanad Road',
-    '',
-    'Kochi',
-    682030,
-    'Kerala',
-    'On Campus'
-  );*/
+(
+  1,
+  'Arjun',
+  'Nair',
+  'Cochin University of Science and Technology',
+  2,
+  20,
+  'M',
+  'Suresh Nair',
+  '0484-555-1212',
+  '25 MG Road',
+  '',
+  'Kochi',
+  682016,
+  'Kerala',
+  'On Campus'
+),
+(
+  2,
+  'Anjali',
+  'Krishnan',
+  'National Institute of Technology, Calicut',
+  3,
+  21,
+  'F',
+  'Krishna Kumar',
+  '0495-555-3434',
+  '47 NH Bypass',
+  'Near Kattangal',
+  'Kozhikode',
+  673601,
+  'Kerala',
+  'Off Campus'
+),
+(
+  3,
+  'Vishnu',
+  'Ravi',
+  'Indian Institute of Technology, Palakkad',
+  1,
+  19,
+  'M',
+  'Ravi Sankar',
+  '0491-555-5678',
+  '19 Palakkad Main Road',
+  '',
+  'Palakkad',
+  678001,
+  'Kerala',
+  'On Campus'
+),
+(
+  4,
+  'Megha',
+  'Pillai',
+  'University of Kerala',
+  4,
+  22,
+  'F',
+  'Anil Pillai',
+  '0471-555-7878',
+  '89 Vellayambalam',
+  'Flat 3A',
+  'Thiruvananthapuram',
+  695014,
+  'Kerala',
+  'Off Campus'
+),
+(
+  5,
+  'Ajith',
+  'Menon',
+  'Rajagiri College of Social Sciences',
+  2,
+  20,
+  'M',
+  'Radha Menon',
+  '0484-555-9090',
+  '12 Kakkanad Road',
+  '',
+  'Kochi',
+  682030,
+  'Kerala',
+  'On Campus'
+);*/
 
-  INSERT INTO student (
-    studentid,
-    studentfname,
-    studentlname,
-    institutionname,
-    yearofstudy,
-    age,
-    gender,
-    guardianname,
-    phonenumber,
-    addressline1,
-    addressline2,
-    city,
-    pincode,
-    state,
-    currentresidence
+INSERT INTO student (
+  studentid,
+  studentfname,
+  studentlname,
+  institutionname,
+  yearofstudy,
+  age,
+  gender,
+  guardianname,
+  phonenumber,
+  addressline1,
+  addressline2,
+  city,
+  pincode,
+  state,
+  currentresidence
 )
 VALUES
-  (
-    6,
-    'Kavya',
-    'Nambiar',
-    'Amrita Vishwa Vidyapeetham, Kochi',
-    3,
-    21,
-    'F',
-    'Mohan Nambiar',
-    '0484-555-1213',
-    '12 Marine Drive',
-    '',
-    'Kochi',
-    682031,
-    'Kerala',
-    'Off Campus'
-  ),
-  (
-    7,
-    'Siddharth',
-    'Varma',
-    'Government Engineering College, Thrissur',
-    2,
-    20,
-    'M',
-    'Ravi Varma',
-    '0487-555-2222',
-    '56 Shoranur Road',
-    '',
-    'Thrissur',
-    680001,
-    'Kerala',
-    'On Campus'
-  ),
-  (
-    8,
-    'Neha',
-    'Raj',
-    'College of Engineering, Trivandrum',
-    1,
-    19,
-    'F',
-    'Sanjay Raj',
-    '0471-555-3434',
-    '78 Vazhuthacaud',
-    'Flat 6C',
-    'Thiruvananthapuram',
-    695014,
-    'Kerala',
-    'Off Campus'
-  ),
-  (
-    9,
-    'Aravind',
-    'Mohan',
-    'Toc H Institute of Science and Technology, Ernakulam',
-    4,
-    22,
-    'M',
-    'Mohan R',
-    '0484-555-4545',
-    '89 Panampilly Nagar',
-    '',
-    'Ernakulam',
-    682036,
-    'Kerala',
-    'On Campus'
-  ),
-  (
-    10,
-    'Divya',
-    'Pillai',
-    'Mahatma Gandhi University, Kottayam',
-    3,
-    21,
-    'F',
-    'Anand Pillai',
-    '0481-555-5656',
-    '34 MC Road',
-    '',
-    'Kottayam',
-    686001,
-    'Kerala',
-    'Off Campus'
-  );
+(
+  6,
+  'Kavya',
+  'Nambiar',
+  'Amrita Vishwa Vidyapeetham, Kochi',
+  3,
+  21,
+  'F',
+  'Mohan Nambiar',
+  '0484-555-1213',
+  '12 Marine Drive',
+  '',
+  'Kochi',
+  682031,
+  'Kerala',
+  'Off Campus'
+),
+(
+  7,
+  'Siddharth',
+  'Varma',
+  'Government Engineering College, Thrissur',
+  2,
+  20,
+  'M',
+  'Ravi Varma',
+  '0487-555-2222',
+  '56 Shoranur Road',
+  '',
+  'Thrissur',
+  680001,
+  'Kerala',
+  'On Campus'
+),
+(
+  8,
+  'Neha',
+  'Raj',
+  'College of Engineering, Trivandrum',
+  1,
+  19,
+  'F',
+  'Sanjay Raj',
+  '0471-555-3434',
+  '78 Vazhuthacaud',
+  'Flat 6C',
+  'Thiruvananthapuram',
+  695014,
+  'Kerala',
+  'Off Campus'
+),
+(
+  9,
+  'Aravind',
+  'Mohan',
+  'Toc H Institute of Science and Technology, Ernakulam',
+  4,
+  22,
+  'M',
+  'Mohan R',
+  '0484-555-4545',
+  '89 Panampilly Nagar',
+  '',
+  'Ernakulam',
+  682036,
+  'Kerala',
+  'On Campus'
+),
+(
+  10,
+  'Divya',
+  'Pillai',
+  'Mahatma Gandhi University, Kottayam',
+  3,
+  21,
+  'F',
+  'Anand Pillai',
+  '0481-555-5656',
+  '34 MC Road',
+  '',
+  'Kottayam',
+  686001,
+  'Kerala',
+  'Off Campus'
+);
 
 -- CREATING OWNER TABLE 
 
 create table owner(
-	OwnerId int not null,
-	OwnerFName varchar(50) not null,
-	OwnerLName varchar(50) not null,
-	Address varchar(100) not null,
-	DateOfBith date not null,
-	ContactNumber varchar(15) not null,
-	primary key (OwnerId)
+OwnerId int not null,
+OwnerFName varchar(50) not null,
+OwnerLName varchar(50) not null,
+Address varchar(100) not null,
+DateOfBith date not null,
+ContactNumber varchar(15) not null,
+primary key (OwnerId)
 );
 
 -- Insert 10 rows into the owner table
 
 INSERT INTO owner (
-	OwnerId,
-	OwnerFName, 
-	OwnerLName, 
-	Address, 
-	DateOfBith, 
-	ContactNumber
+OwnerId,
+OwnerFName, 
+OwnerLName, 
+Address, 
+DateOfBith, 
+ContactNumber
 )
 VALUES 
+ (
+1, 
+'Arun', 
+'Nair', 
+'Kowdiar, 
+Trivandrum', 
+'1985-07-14', 
+'9847123456'
+  ),
+  (
+2,
+ 'Anjali',
+ 'Menon',
+ 'Ulloor,
+ Trivandrum',
+ '1990-03-22',
+ '9567456123'
+   ),
+  (
+3,
+ 'Suresh',
+ 'Pillai',
+ 'Pattom,
+ Trivandrum',
+ '1980-11-05',
+ '9746123456'
+   ),
    (
-	1, 
-	'Arun', 
-	'Nair', 
-	'Kowdiar, 
-	Trivandrum', 
-	'1985-07-14', 
-	'9847123456'
+4,
+ 'Lekshmi',
+ 'Raj',
+ 'Peroorkada,
+ Trivandrum',
+ '1992-06-15',
+ '9896543210'
+   ),
+   (
+5,
+ 'Manoj',
+ 'Varma',
+ 'Sreekaryam,
+ Trivandrum',
+ '1987-12-20',
+ '9637412580'
+   ),
+   (
+6,
+ 'Priya',
+ 'Krishnan',
+ 'Kazhakootam,
+ Trivandrum',
+ '1995-01-18',
+ '9078541236'
+   ),
+   (
+7,
+ 'Vishnu',
+ 'Ravi',
+ 'Ambalamukku,
+ Trivandrum',
+ '1988-09-09',
+ '9847012345'
+   ),
+   (
+8,
+ 'Deepa',
+ 'Sankar',
+ 'Nalanchira,
+ Trivandrum',
+ '1991-05-28',
+ '9567890123'
     ),
     (
-	2,
-	 'Anjali',
-	 'Menon',
-	 'Ulloor,
-	 Trivandrum',
-	 '1990-03-22',
-	 '9567456123'
-     ),
+9,
+ 'Gopal',
+ 'Das',
+ 'Medical College,
+ Trivandrum',
+ '1983-08-12',
+ '9746127809'
+    );
     (
-	3,
-	 'Suresh',
-	 'Pillai',
-	 'Pattom,
-	 Trivandrum',
-	 '1980-11-05',
-	 '9746123456'
-     ),
-     (
-	4,
-	 'Lekshmi',
-	 'Raj',
-	 'Peroorkada,
-	 Trivandrum',
-	 '1992-06-15',
-	 '9896543210'
-     ),
-     (
-	5,
-	 'Manoj',
- 	'Varma',
-	 'Sreekaryam,
-	 Trivandrum',
-	 '1987-12-20',
-	 '9637412580'
-     ),
-     (
-	6,
-	 'Priya',
-	 'Krishnan',
-	 'Kazhakootam,
-	 Trivandrum',
-	 '1995-01-18',
-	 '9078541236'
-     ),
-     (
-	7,
-	 'Vishnu',
-	 'Ravi',
-	 'Ambalamukku,
-	 Trivandrum',
-	 '1988-09-09',
-	 '9847012345'
-     ),
-     (
-	8,
-	 'Deepa',
-	 'Sankar',
-	 'Nalanchira,
-	 Trivandrum',
-	 '1991-05-28',
-	 '9567890123'
-      ),
-      (
-	9,
-	 'Gopal',
-	 'Das',
-	 'Medical College,
-	 Trivandrum',
-	 '1983-08-12',
-	 '9746127809'
-      );
-      (
-	10,
-	 'Nandini',
-	 'Shankar',
-	 'Kesavadasapuram,
-	 Trivandrum',
-	 '1994-02-03',
-	 '9897564120'
+10,
+ 'Nandini',
+ 'Shankar',
+ 'Kesavadasapuram,
+ Trivandrum',
+ '1994-02-03',
+ '9897564120'
 );
 
 
@@ -351,23 +351,23 @@ VALUES
 -- Create Hostel table
 
 create table hostel(
-    HostelId int not null,
-    HostelName varchar(50) not null,
-    OwnerId int not null,
-    AddressLine1 varchar(60) not null,
-    AddressLine2 varchar(60),
-    City varchar(50) not null,
-    Pincode int not null,
-    State varchar(40) not null,
-    Capacity int not null,
-    Type varchar(10) not null,
-    ContactNumber varchar(15) not null,
-    Rating numeric(4,2),
-    Verification boolean not null,
-    primary key (HostelId),
-    foreign key (OwnerId) references Owner(OwnerId)
-    
-  );
+  HostelId int not null,
+  HostelName varchar(50) not null,
+  OwnerId int not null,
+  AddressLine1 varchar(60) not null,
+  AddressLine2 varchar(60),
+  City varchar(50) not null,
+  Pincode int not null,
+  State varchar(40) not null,
+  Capacity int not null,
+  Type varchar(10) not null,
+  ContactNumber varchar(15) not null,
+  Rating numeric(4,2),
+  Verification boolean not null,
+  primary key (HostelId),
+  foreign key (OwnerId) references Owner(OwnerId)
+  
+);
 
 
 
@@ -379,263 +379,190 @@ create table hostel(
 -- Insert 10 rows into the hostel table
 
 INSERT INTO hostel (
-    HostelId,
-    HostelName,
-    OwnerId,
-    AddressLine1,
-    AddressLine2,
-    City,
-    Pincode,
-    State,
-    Capacity,
-    Type,
-    ContactNumber,
-    Rating,
-    Verification
+  HostelId,
+  HostelName,
+  OwnerId,
+  AddressLine1,
+  AddressLine2,
+  City,
+  Pincode,
+  State,
+  Capacity,
+  Type,
+  ContactNumber,
+  Rating,
+  Verification
 )
 VALUES 
 (
-    1,
-    'Green Meadows',
-    1,
-    'Near Kowdiar Palace',
-    'Kowdiar',
-    'Trivandrum',
-    695003,
-    'Kerala',
-    50,
-    'mens',
-    '9847123456',
-    4.5,
-    TRUE
+  1,
+  'Green Meadows',
+  1,
+  'Near Kowdiar Palace',
+  'Kowdiar',
+  'Trivandrum',
+  695003,
+  'Kerala',
+  50,
+  'mens',
+  '9847123456',
+  4.5,
+  TRUE
 ),
 
 (
-    2,
-    'Sunshine Women''s Hostel',
-    2,
-    'Ulloor Junction',
-    NULL,
-    'Trivandrum',
-    695011,
-    'Kerala',
-    60,
-    'women',
-    '9567456123',
-    4.8,
-    TRUE
+  2,
+  'Sunshine Women''s Hostel',
+  2,
+  'Ulloor Junction',
+  NULL,
+  'Trivandrum',
+  695011,
+  'Kerala',
+  60,
+  'women',
+  '9567456123',
+  4.8,
+  TRUE
 ),
 
 (
-    3,
-    'Blue Hills Hostel',
-    3,
-    'Pattom PO',
-    'Near Marappalam',
-    'Trivandrum',
-    695004,
-    'Kerala',
-    100,
-    'mens',
-    '9746123456',
-    4.2,
-    TRUE
+  3,
+  'Blue Hills Hostel',
+  3,
+  'Pattom PO',
+  'Near Marappalam',
+  'Trivandrum',
+  695004,
+  'Kerala',
+  100,
+  'mens',
+  '9746123456',
+  4.2,
+  TRUE
 ),
 (
-    4,
-    'Silver Oaks',
-    4,
-    'Peroorkada Junction',
-    NULL,
-    'Trivandrum',
-    695005,
-    'Kerala',
-    80,
-    'mixed',
-    '9896543210',
-    4.7,
-    TRUE
+  4,
+  'Silver Oaks',
+  4,
+  'Peroorkada Junction',
+  NULL,
+  'Trivandrum',
+  695005,
+  'Kerala',
+  80,
+  'mixed',
+  '9896543210',
+  4.7,
+  TRUE
 ),
 
 (
-    5,
-    'Palm View Residency',
-    5,
-    'Sreekaryam Main Road',
-    NULL,
-    'Trivandrum',
-    695017,
-    'Kerala',
-    45,
-    'mens',
-    '9637412580',
-    4.4,
-    TRUE
+  5,
+  'Palm View Residency',
+  5,
+  'Sreekaryam Main Road',
+  NULL,
+  'Trivandrum',
+  695017,
+  'Kerala',
+  45,
+  'mens',
+  '9637412580',
+  4.4,
+  TRUE
 ),
 (
-    6,
-    'Daffodil Women''s Hostel',
-    6,
-    'Near Technopark',
-    'Kazhakootam',
-    'Trivandrum',
-    695582,
-    'Kerala',
-    55,
-    'women',
-    '9078541236',
-    4.9,
-    TRUE
+  6,
+  'Daffodil Women''s Hostel',
+  6,
+  'Near Technopark',
+  'Kazhakootam',
+  'Trivandrum',
+  695582,
+  'Kerala',
+  55,
+  'women',
+  '9078541236',
+  4.9,
+  TRUE
 ),
 (
-    7,
-    'The Haven',
-    7,
-    'Ambalamukku',
-    NULL,
-    'Trivandrum',
-    695008,
-    'Kerala',
-    40,
-    'mixed',
-    '9847012345',
-    4.1,
-    TRUE
+  7,
+  'The Haven',
+  7,
+  'Ambalamukku',
+  NULL,
+  'Trivandrum',
+  695008,
+  'Kerala',
+  40,
+  'mixed',
+  '9847012345',
+  4.1,
+  TRUE
 ),
 (
-    8,
-    'Maple Grove Hostel',
-    8,
-    'Nalanchira PO',
-    'Near St. Thomas College',
-    'Trivandrum',
-    695015,
-    'Kerala',
-    75,
-    'mixed',
-    '9567890123',
-    4.3,
-    TRUE
+  8,
+  'Maple Grove Hostel',
+  8,
+  'Nalanchira PO',
+  'Near St. Thomas College',
+  'Trivandrum',
+  695015,
+  'Kerala',
+  75,
+  'mixed',
+  '9567890123',
+  4.3,
+  TRUE
 ),
 (
-    9,
-    'Golden Nest',
-    9,
-    'Medical College Road',
-    NULL,
-    'Trivandrum',
-    695011,
-    'Kerala',
-    90,
-    'mens',
-    '9746127809',
-    4.6,
-    TRUE
+  9,
+  'Golden Nest',
+  9,
+  'Medical College Road',
+  NULL,
+  'Trivandrum',
+  695011,
+  'Kerala',
+  90,
+  'mens',
+  '9746127809',
+  4.6,
+  TRUE
 ),
 (
-    10,
-    'The Orchid Inn',
-    10,
-    'Kesavadasapuram',
-    'Near Pattom Bridge',
-    'Trivandrum',
-    695004,
-    'Kerala',
-    50,
-    'women',
-    '9897564120',
-    4.5,
-    TRUE
+  10,
+  'The Orchid Inn',
+  10,
+  'Kesavadasapuram',
+  'Near Pattom Bridge',
+  'Trivandrum',
+  695004,
+  'Kerala',
+  50,
+  'women',
+  '9897564120',
+  4.5,
+  TRUE
 );
-create table for user review
-CREATE TABLE user_review (
-    HostelId INT NOT NULL,
-    studentid INT NOT NULL,
-    review_date DATE NOT NULL,
-    review_time TIME NOT NULL,
-    rating INT NOT NULL,
-    review VARCHAR(100),
-    FOREIGN KEY (studentid) REFERENCES student(studentid),
-    FOREIGN KEY (HostelId) REFERENCES hostel(HostelId)
-);
-insert userreview:
-INSERT INTO user_review (
-    HostelId, studentid, review_date, review_time, rating, review
-)
-VALUES
-    (1, 1, '2024-09-01', '12:30:00', 5, 'Great place to stay!'),
-    (2, 2, '2024-09-02', '14:45:00', 4, 'Comfortable and clean.'),
-    (3, 3, '2024-09-03', '09:15:00', 3, 'Average experience, could be better.'),
-    (4, 4, '2024-09-04', '11:00:00', 5, 'Excellent staff and amenities.'),
-    (5, 5, '2024-09-05', '10:20:00', 2, 'Needs better maintenance.'),
-    (6, 6, '2024-09-06', '16:10:00', 4, 'Nice environment but food options limited.'),
-    (7, 7, '2024-09-07', '13:00:00', 3, 'Affordable but basic facilities.'),
-    (8, 8, '2024-09-08', '18:30:00', 5, 'Loved the location and services!'),
-    (9, 9, '2024-09-09', '17:45:00', 4, 'Spacious rooms, great value for money.'),
-    (10, 10, '2024-09-10', '08:30:00', 1, 'Very poor experience, not recommended.');
-
-CREATE TABLE new_products (
-    ProductId SERIAL PRIMARY KEY,     
-    ProductName VARCHAR(255),         
-    Category VARCHAR(255),            
-    Price FLOAT,                      
-    Vendor VARCHAR(255)               
-)
-INSERT INTO new_products (ProductId, ProductName, Category, Price, Vendor)
-VALUES
-(100, 'Single Bed', 'Furniture', 199.99, 'Hostel Supplies Co.'),
-(101, 'Study Desk', 'Furniture', 89.50, 'Dorm Furniture Ltd.'),
-(102, 'Portable Fan', 'Electronics', 25.99, 'Hostel Appliances Inc.'),
-(103, 'Water Heater', 'Electronics', 49.99, 'Hostel Appliances Inc.'),
-(104, 'LED Lamp', 'Electronics', 15.45, 'Dorm Essentials'),
-(105, 'Mattress', 'Bedding', 129.99, 'SleepWell Corp.'),
-(106, 'Pillows (Set of 2)', 'Bedding', 19.99, 'ComfortSleep Inc.'),
-(107, 'Closet Organizer', 'Furniture', 39.99, 'Space Savers'),
-(108, 'Curtains', 'Home Decor', 22.99, 'Dorm Decor Ltd.'),
-(109, 'Mini Fridge', 'Electronics', 149.99, 'Appliance World');
-
-
-
-CREATE TABLE used_products (
-    ProductId SERIAL PRIMARY KEY,    
-    ProductName VARCHAR(255),         
-    Category VARCHAR(255),            
-    Price FLOAT,                      
-    Vendor VARCHAR(255),              
-    StudentId INT                    
- );
-
-
-INSERT INTO used_products (ProductId, ProductName, Category, Price, Vendor, StudentId)
-VALUES
-(100, 'Used Single Bed', 'Furniture', 120.00, 'StudentSeller Co.', 1),
-(101, 'Second-Hand Desk Lamp', 'Electronics', 10.00, 'Dorm Supplies', 2),
-(102, 'Old Mattress', 'Bedding', 50.00, 'StudentSeller Inc.', 3),
-(103, 'Closet Organizer (Used)', 'Furniture', 20.00, 'Space Savers', 4),
-(104, 'Curtains (Pre-Owned)', 'Home Decor', 12.99, 'Student Decor Mart', 1),
-(105, 'Mini Fridge (Second-Hand)', 'Electronics', 75.00, 'Appliance World', 3),
-(106, 'Used Study Chair', 'Furniture', 35.00, 'Hostel Essentials', 2),
-(107, 'Second-Hand Washing Machine', 'Electronics', 100.00, 'Hostel Supplies Co.', 1),
-(108, 'Pre-Owned Bookshelf', 'Furniture', 45.00, 'Dorm Furniture Ltd.', 2),
-(109, 'Second-Hand Microwave', 'Electronics', 55.00, 'Appliance World', 3);
-
-
 
 
 -- Create Rooms table
 
 create table Rooms (
-  RoomId int not null, 
-  HostelId int not null, 
-  NumberOfRooms int not null, 
-  RoomType varchar(20) not null, 
-  Capacity int not null,
-  CurrentVacancy int not null, 
-  ACNonAC boolean not null, 
-  Rent decimal(10, 2) not null,
-  primary key (RoomId,HostelId),
-  foreign key (HostelId) references hostel (hostelid)
-  
+RoomId int not null, 
+HostelId int not null, 
+NumberOfRooms int not null, 
+RoomType varchar(20) not null, 
+Capacity int not null,
+CurrentVacancy int not null, 
+ACNonAC boolean not null, 
+Rent decimal(10, 2) not null,
+primary key (RoomId,HostelId),
+foreign key (HostelId) references hostel (hostelid)
+
 );
 
 
@@ -655,124 +582,167 @@ create table Rooms (
 
 
 INSERT INTO Rooms (
-  RoomId,
-  HostelId,
-  NumberOfRooms,
-  RoomType,
-  Capacity,
-  CurrentVacancy,
-  ACNonAC,
-  Rent
+RoomId,
+HostelId,
+NumberOfRooms,
+RoomType,
+Capacity,
+CurrentVacancy,
+ACNonAC,
+Rent
 ) VALUES 
 (
-  1,
-  1,  -- HostelId referencing 'Green Meadows'
-  10,
-  'Single',
-  1,
-  5,
-  TRUE,
-  3500.00
+1,
+1,  -- HostelId referencing 'Green Meadows'
+10,
+'Single',
+1,
+5,
+TRUE,
+3500.00
 ),
 (
-  2,
-  1,  -- HostelId referencing 'Green Meadows'
-  20,
-  'Double',
-  2,
-  8,
-  FALSE,
-  2750.00
+2,
+1,  -- HostelId referencing 'Green Meadows'
+20,
+'Double',
+2,
+8,
+FALSE,
+2750.00
 ),
 (
-  3,
-  2,  -- HostelId referencing 'Sunshine Women''s Hostel'
-  15,
-  'Single',
-  1,
-  4,
-  TRUE,
-  2500.00
+3,
+2,  -- HostelId referencing 'Sunshine Women''s Hostel'
+15,
+'Single',
+1,
+4,
+TRUE,
+2500.00
 ),
 (
-  4,
-  3,  -- HostelId referencing 'Blue Hills Hostel'
-  25,
-  'Suite',
-  4,
-  10,
-  TRUE,
-  4000.00
+4,
+3,  -- HostelId referencing 'Blue Hills Hostel'
+25,
+'Suite',
+4,
+10,
+TRUE,
+4000.00
 ),
 (
-  5,
-  4,  -- HostelId referencing 'Silver Oaks'
-  18,
-  'Double',
-  2,
-  7,
-  FALSE,
-  2500.00
+5,
+4,  -- HostelId referencing 'Silver Oaks'
+18,
+'Double',
+2,
+7,
+FALSE,
+2500.00
 ),
 (
-  6,
-  5,  -- HostelId referencing 'Palm View Residency'
-  12,
-  'Single',
-  1,
-  6,
-  TRUE,
-  3250.00
+6,
+5,  -- HostelId referencing 'Palm View Residency'
+12,
+'Single',
+1,
+6,
+TRUE,
+3250.00
 ),
 (
-  7,
-  6,  -- HostelId referencing 'Daffodil Women''s Hostel'
-  20,
-  'Double',
-  2,
-  8,
-  TRUE,
-  3000.00
+7,
+6,  -- HostelId referencing 'Daffodil Women''s Hostel'
+20,
+'Double',
+2,
+8,
+TRUE,
+3000.00
 ),
 (
-  8,
-  7,  -- HostelId referencing 'The Haven'
-  10,
-  'Single',
-  1,
-  3,
-  FALSE,
-  3000.00
+8,
+7,  -- HostelId referencing 'The Haven'
+10,
+'Single',
+1,
+3,
+FALSE,
+3000.00
 ),
 (
-  9,
-  8,  -- HostelId referencing 'Maple Grove Hostel'
-  22,
-  'Double',
-  2,
-  10,
-  TRUE,
-  3000.00
+9,
+8,  -- HostelId referencing 'Maple Grove Hostel'
+22,
+'Double',
+2,
+10,
+TRUE,
+3000.00
 ),
 (
-  10,
-  9,  -- HostelId referencing 'Golden Nest'
-  30,
-  'Suite',
-  4,
-  12,
-  TRUE,
-  3200.00
+10,
+9,  -- HostelId referencing 'Golden Nest'
+30,
+'Suite',
+4,
+12,
+TRUE,
+3200.00
 ),
 (
-  11,
-  10,  -- HostelId referencing 'The Orchid Inn'
-  14,
-  'Single',
-  1,
-  5,
-  FALSE,
-  2550.00
+11,
+10,  -- HostelId referencing 'The Orchid Inn'
+14,
+'Single',
+1,
+5,
+FALSE,
+2550.00
 );
 
 
+-- updating student table with hostelid as foreign key 
+
+
+UPDATE student
+SET hostelid = 2
+WHERE studentid = 1;
+
+
+UPDATE student
+SET hostelid = 5
+WHERE studentid = 2;
+
+UPDATE student
+SET hostelid = 4
+WHERE studentid = 3;
+
+UPDATE student
+SET hostelid = 3
+WHERE studentid = 4;
+
+UPDATE student
+SET hostelid = 1
+WHERE studentid = 5;
+
+UPDATE student
+SET hostelid = 8
+WHERE studentid = 6;
+
+UPDATE student
+SET hostelid = 10
+WHERE studentid = 7;
+
+UPDATE student
+SET hostelid = 9
+WHERE studentid = 8;
+
+UPDATE student
+SET hostelid = 6
+WHERE studentid = 9;
+
+UPDATE student
+SET hostelid = 7
+WHERE studentid = 10;
