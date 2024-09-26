@@ -703,6 +703,35 @@ FALSE,
 );
 
 
+=======
+-- Vendor Table 
+create table
+  Vendors (
+    VendorId INT PRIMARY key,
+    VENDORNAME VARCHAR(100) NOT NULL,
+    VERIFIED boolean NOT null,
+    address varchar(80) null,
+    city varchar(40) not null,
+    pincode int not null,
+    state varchar(40) not null
+    
+  );
+
+
+-- Vendor table data insertion 
+INSERT INTO Vendors (VendorId, VendorName, Verified, Address, City, Pincode, State)
+VALUES 
+  (1, 'Greenfield Electronics', TRUE, '123 Palm Street', 'Kochi', 682020, 'Kerala'),
+  (2, 'Sapphire Software Solutions', TRUE, '456 Maple Avenue', 'Bengaluru', 560001, 'Karnataka'),
+  (3, 'BrightStar Tech', FALSE, '789 Oak Lane', 'Chennai', 600034, 'Tamil Nadu'),
+  (4, 'Galaxy Grocers', TRUE, '21 Flower Road', 'Thiruvananthapuram', 695001, 'Kerala'),
+  (5, 'Ace Hardware Supplies', FALSE, NULL, 'Pune', 411030, 'Maharashtra'),
+  (6, 'Modern Furniture Co.', TRUE, '22 MG Road', 'Mumbai', 400001, 'Maharashtra'),
+  (7, 'Rapid Courier Services', TRUE, NULL, 'Hyderabad', 500081, 'Telangana'),
+  (8, 'BlueSky Media', FALSE, '14 Lake View Drive', 'Kolkata', 700019, 'West Bengal'),
+  (9, 'Elite Fashion', TRUE, '15 Mall Road', 'Delhi', 110001, 'Delhi'),
+  (10, 'Urban Cafe Supplies', TRUE, '67 River Side', 'Lucknow', 226010, 'Uttar Pradesh');
+
 -- updating student table with hostelid as foreign key 
 
 
@@ -746,3 +775,4 @@ WHERE studentid = 9;
 UPDATE student
 SET hostelid = 7
 WHERE studentid = 10;
+
