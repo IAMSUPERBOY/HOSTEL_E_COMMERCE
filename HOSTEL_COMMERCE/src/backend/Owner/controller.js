@@ -1,5 +1,5 @@
-import supabase from "../supabaseclient.js";
-
+import supabase from "../util/supabaseclient.js";
+import Owner from "./model.js";
 
 //The form data from the owner end is send as an json object to the following method 
 //hostel_details should be a key-value pair data structure
@@ -46,8 +46,12 @@ async function AddHostel(ownerid,hostel_details)
         
 }
 const test={};
-try {await AddHostel(1,test);}
+try {
+  
+  const ownerTest=new Owner(101,'a','b','c','d/d/d','12312312312');
+  console.log(ownerTest.id);
+}
 catch(Exception)
 {
-    console.log(Exception);
+     console.log(Exception);
 }
