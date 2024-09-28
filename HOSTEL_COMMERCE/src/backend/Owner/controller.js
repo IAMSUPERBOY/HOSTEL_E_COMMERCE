@@ -100,12 +100,12 @@ async function Remove_Student_Vacate(ownerid, students_leaving) {
       .select("currentvacancy")
       .eq("hostelid", hostelid)
       .eq("roomid", roomid);
-    //increment the vacancy for the room 
+    //increment the vacancy for the room
 
     await supabase
       .from("rooms")
       .update({ currentvacancy: room.currentvacancy + 1 })
-      .eq("hostelid",hostelid)
+      .eq("hostelid", hostelid)
       .eq("roomid", roomid);
 
     await supabase
@@ -121,4 +121,9 @@ async function Remove_Student_Vacate(ownerid, students_leaving) {
   }
 }
 
-async function Reject_Application(ownerid,)
+async function Reject_Application(applicationid) {
+  const { error } = await supabase
+    .from("application")
+    .delete()
+    .eq("id", applicationid);
+}
