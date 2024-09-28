@@ -22,6 +22,8 @@ import Hostel from "../Hostel/model.js";
     constraint hostel_pkey primary key (hostelid),
     constraint hostel_ownerid_fkey foreign key (ownerid) references owner (ownerid)
   ) tablespace pg_default; */
+
+  
 async function AddHostel(ownerid,hostel)
 {
 
@@ -47,3 +49,30 @@ async function AddHostel(ownerid,hostel)
         
 }
 
+
+async function UpdateHostel(hostelid, hostel) {
+
+  const { data, error } = await supabase
+  .from('hostel')
+  .update({
+      hostelname: hostel.hostelname, 
+      ownerid: hostel.owner,
+      addressline1: hostel.addressline1, 
+      addressline2: hostel.addressline2,  
+      city: hostel.city, 
+      pincode: hostel.pincode,
+      state: hostel.state,
+      capacity: hostel.capacity,
+      type: hostel.type,
+      contactnumber: hostel.contactnumber,
+      rating: hostel.rating,
+      verification: hostel.verification
+  })
+  .eq('hostelid', hostelid) 
+
+  if (error) {
+      console.error("Error updating hostel:", error);
+  } else {
+      console.log("Hostel updated successfully:", data);
+  }
+}
