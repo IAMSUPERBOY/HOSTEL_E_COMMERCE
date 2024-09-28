@@ -850,3 +850,20 @@ VALUES
 (2, 10, 'Multiple', 3, TRUE, 3300.00);
 
 
+
+
+-- adding extra roomid column in student and data
+
+
+UPDATE student SET roomid = 3 WHERE hostelid = 2;
+UPDATE student SET roomid = 2 WHERE hostelid = 5;
+UPDATE student SET roomid = 1 WHERE hostelid = 4;
+UPDATE student SET roomid = 2 WHERE hostelid = 3;
+UPDATE student SET roomid = 1 WHERE hostelid = 1;
+UPDATE student SET roomid = 2 WHERE hostelid = 8;
+UPDATE student SET roomid = 2 WHERE hostelid = 10;
+UPDATE student SET roomid = 3 WHERE hostelid = 9;
+UPDATE student SET roomid = 1 WHERE hostelid = 6;
+UPDATE student SET roomid = 2 WHERE hostelid = 7;
+
+
