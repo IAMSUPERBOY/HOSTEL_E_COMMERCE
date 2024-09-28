@@ -50,7 +50,7 @@ async function AddHostel(ownerid,hostel)
 }
 
 
-async function UpdateHostel(hostelid, hostel) {
+async function EditHostel(hostelid, hostel) {
 
   const { data, error } = await supabase
   .from('hostel')
