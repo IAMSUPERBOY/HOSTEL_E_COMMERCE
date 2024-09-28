@@ -10,7 +10,7 @@ class Student
         this.age=age;
         this.gender = gender;
         this.guardianname = guardianname;
-        this.phno = phno;
+        this.phno = phno; 
         this.addressline1 = addressline1;
         this.addressline2 = addressline2;
         this.city  = city;
