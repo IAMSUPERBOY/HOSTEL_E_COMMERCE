@@ -127,3 +127,15 @@ async function Reject_Application(applicationid) {
     .delete()
     .eq("id", applicationid);
 }
+
+export const Get_Application_Counts=async()=>
+{
+
+let { data: application, error } = await supabase
+.from('application')
+.select('type,status');
+
+return application;
+
+}
+
