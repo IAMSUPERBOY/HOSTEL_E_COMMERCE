@@ -81,61 +81,89 @@ async function List_Leave(ownerid) {
 - The owner selects a set of students requesting leave from the table
 - they are added to temporary array that contains the application id
 */
-async function Remove_Student_Vacate(ownerid, students_leaving) {
+async function Remove_Student_Vacate(ownerid, studentid) {
   //students_leaving is an array of students that are leaving array : [application id], we need to ensure that a particular owner only sees the application made for his hostel.
 
-  for (let i = 0; i < students_leaving.length; i++) {
-    const { data: application, e1 } = await supabase
-      .from("application")
-      .select("id,hostelid,roomid,studentid")
-      .eq("id", students_leaving[i]);
+  const { data: application, e1 } = await supabase
+    .from("application")
+    .select("id,hostelid,roomid,studentid")
+    .eq("id", studentid);
 
-    const roomid = application.roomid;
-    const hostelid = application.hostelid;
-    const studentid = application.studentid;
+  const roomid = application.roomid;
+  const hostelid = application.hostelid;
+  const studentid = application.studentid;
 
-    //get the currentvacancy for the room the student is leaving from
-    let { current_vacancy: room, e2 } = await supabase
-      .from("rooms")
-      .select("currentvacancy")
-      .eq("hostelid", hostelid)
-      .eq("roomid", roomid);
-    //increment the vacancy for the room
+  //get the currentvacancy for the room the student is leaving from
+  let { current_vacancy: room, e2 } = await supabase
+    .from("rooms")
+    .select("currentvacancy")
+    .eq("hostelid", hostelid)
+    .eq("roomid", roomid);
+  //increment the vacancy for the room
 
-    await supabase
-      .from("rooms")
-      .update({ currentvacancy: room.currentvacancy + 1 })
-      .eq("hostelid", hostelid)
-      .eq("roomid", roomid);
+  await supabase
+    .from("rooms")
+    .update({ currentvacancy: room.currentvacancy + 1 })
+    .eq("hostelid", hostelid)
+    .eq("roomid", roomid);
 
-    await supabase
-      .from("student")
-      .update({ hostelid: "NULL", roomid: "NULL" })
-      .eq("studentid", studentid)
-      .select();
+  await supabase
+    .from("student")
+    .update({ hostelid: "NULL", roomid: "NULL" })
+    .eq("studentid", studentid)
+    .select();
 
-    const { errors } = await supabase
-      .from("application")
-      .delete()
-      .eq("id", students_leaving[i]);
-  }
+  const { errors } = await supabase
+    .from("application")
+    .delete()
+    .eq("id", studentid);
 }
 
-async function Reject_Application(applicationid) {
+export const Reject_Application = async (applicationid) => {
   const { error } = await supabase
     .from("application")
     .delete()
     .eq("id", applicationid);
-}
+};
 
-export const Get_Application_Counts=async()=>
-{
+export const Get_Application_Counts = async () => {
+  let { data: application, error } = await supabase
+    .from("application")
+    .select("id,studentid,hostelid,roomid,type,status");
 
-let { data: application, error } = await supabase
-.from('application')
-.select('type,status');
+  return application;
+};
 
-return application;
+export const Accept_Student = async (
+  applicationid,
+  studentid,
+  hostelid,
+  roomid
+) => {
+  Reject_Application(applicationid);
 
-}
+  //get the currentvacancy for the room the student is leaving from
+  let { current_vacancy: room, e2 } = await supabase
+    .from("rooms")
+    .select("currentvacancy")
+    .eq("hostelid", hostelid)
+    .eq("roomid", roomid);
+  //decrement the vacancy for the room
 
+  await supabase
+    .from("rooms")
+    .update({ currentvacancy: room.currentvacancy - 1 })
+    .eq("hostelid", hostelid)
+    .eq("roomid", roomid);
+
+  await supabase
+    .from("student")
+    .update({ hostelid: hostelid, roomid: roomid })
+    .eq("studentid", studentid)
+    .select();
+
+  const { errors } = await supabase
+    .from("application")
+    .delete()
+    .eq("id", studentid);
+};
