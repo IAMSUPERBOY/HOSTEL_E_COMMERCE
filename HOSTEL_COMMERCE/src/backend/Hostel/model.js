@@ -30,7 +30,9 @@ class Hostel {
     type,
     contactnumber,
     rating,
-    verification
+    gender,
+    description,
+  
   ) 
   {
     this.hostelid=hostelid;
@@ -45,7 +47,9 @@ class Hostel {
     this.type=type;
     this.contactnumber=contactnumber;
     this.rating=rating;
-    this.verification=verification;
+    this.gender=gender;
+    this.description=description;
+   
   }
 }
 
