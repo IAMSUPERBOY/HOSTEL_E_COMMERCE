@@ -1,13 +1,10 @@
 import React from "react";
-import { Reject_Application,Accept_Student, Get_Applicant_Names } from "../backend/Owner/controller";
-export default function JoinReq({ studentid,id,hostelid,roomid,Name}) {
-  function handleReject()
-  {
-    Reject_Application(id)
-  }
+import {Remove_Student_Vacate } from "../backend/Owner/controller";
+export default function LeaveReq({ studentid,id,hostelid,roomid,Name}) {
+ 
   function handleAccept()
   {
-    Accept_Student(id,studentid,hostelid,roomid);
+    Remove_Student_Vacate(id,studentid,hostelid,roomid);
     
   }
 return (
@@ -19,7 +16,7 @@ return (
           <p class="text-sm text-gray-500">VIEW profile</p>
         </div>
         <div class="flex gap-2">
-        <button class="btn btn-secondary hover:bg-red-500 hover:shadow-md" onClick={handleReject} >REJECT</button>
+       
         <button class="btn btn-primary hover:bg-green-500 hover:shadow-md" onClick={handleAccept}>ACCEPT</button>
         </div>
       </div>
