@@ -23,42 +23,58 @@ import Hostel from "../Hostel/model.js";
     constraint hostel_ownerid_fkey foreign key (ownerid) references owner (ownerid)
   ) tablespace pg_default; */
 
-async function AddHostel(ownerid, hostel) {
-  const { data, error } = await supabase.from("hostel").insert([
-    {
-      hostelid: hostel.hostelid,
-      hostelname: hostel.hostelname,
-      ownerid: hostel.owner,
-      addressline1: hostel.addressline1,
-      addressline2: hostel.addressline2,
-      city: hostel.city,
-      pincode: hostel.pincode,
-      state: hostel.state,
-      capacity: hostel.capacity,
-      type: hostel.type,
-      contactnumber: hostel.contactnumber,
-      rating: hostel.rating,
-      verification: hostel.verification,
-    },
-  ]);
-}
+  export async function AddHostel(ownerid, hostel) {
+    let { data: maxhostelid, hoserror } = await supabase
+  .from('hostel')
+  .select('hostelid')
+  .order('hostelid', { ascending: false })
+  .limit(1); // Fetch the largest hostelid
 
-async function EditHostel(hostelid, hostel) {
+    const { data, error } = await supabase.from("hostel").insert([
+      {
+        hostelname: hostel.hostelname,
+        hostelid: maxhostelid[0].hostelid+1,
+        ownerid: ownerid,  // Use the passed ownerid here
+        addressline1: hostel.addressline1,
+        addressline2: hostel.addressline2,
+        city: hostel.city,
+        pincode: hostel.pincode,
+        state: hostel.state,
+        capacity: hostel.capacity,
+        type: hostel.type,
+        contactnumber: hostel.contactnumber,
+        rating: hostel.rating,
+        gender: hostel.gender,
+        description: hostel.description
+      },
+    ]);
+  
+    if (error) {
+      console.error("Error inserting hostel:", error);
+      throw error;  // Throw the error to be handled in the frontend
+    }
+  
+    return data;  // Return the inserted data (optional)
+  }
+
+
+
+
+export async function EditHostel(hostelid, hostel) {
   const { data, error } = await supabase
     .from("hostel")
     .update({
       hostelname: hostel.hostelname,
-      ownerid: hostel.owner,
-      addressline1: hostel.addressline1,
-      addressline2: hostel.addressline2,
-      city: hostel.city,
-      pincode: hostel.pincode,
-      state: hostel.state,
-      capacity: hostel.capacity,
-      type: hostel.type,
-      contactnumber: hostel.contactnumber,
-      rating: hostel.rating,
-      verification: hostel.verification,
+        addressline1: hostel.addressline1,
+        addressline2: hostel.addressline2,
+        city: hostel.city,
+        pincode: hostel.pincode,
+        state: hostel.state,
+        capacity: hostel.capacity,
+        type: hostel.type,
+        contactnumber: hostel.contactnumber,
+        gender: hostel.gender,
+        description: hostel.description
     })
     .eq("hostelid", hostelid);
 
@@ -68,6 +84,61 @@ async function EditHostel(hostelid, hostel) {
     console.log("Hostel updated successfully:", data);
   }
 }
+
+
+
+
+export async function AddRoom(hostelid, roomDetails) {
+  const { roomtype, currentvacancy, acnonac, rent } = roomDetails;
+  
+  try {
+    // Step 1: Get the current highest roomid for the given hostelid
+    const { data: existingRooms, error: fetchError } = await supabase
+      .from('rooms')
+      .select('roomid')
+      .eq('hostelid', hostelid)
+      .order('roomid', { ascending: false })
+      .limit(1);
+    
+    if (fetchError) {
+      console.error("Error fetching existing rooms:", fetchError);
+      return { success: false, message: fetchError.message };
+    }
+
+    // Step 2: Increment the roomid
+    let newRoomId = 1;  // Default roomid if no rooms exist for the hostel
+
+    if (existingRooms && existingRooms.length > 0) {
+      newRoomId = existingRooms[0].roomid + 1;
+    }
+
+    // Step 3: Insert the new room into the rooms table with the incremented roomid
+    const { data, error } = await supabase
+      .from('rooms')
+      .insert([
+        {
+          roomid: newRoomId,
+          hostelid: hostelid,
+          roomtype: roomtype,
+          currentvacancy: currentvacancy,
+          acnonac: acnonac,
+          rent: rent
+        }
+      ]);
+
+    if (error) {
+      console.error("Error adding room:", error);
+      return { success: false, message: error.message };
+    }
+
+    return { success: true, data: data, message: "Room added successfully" };
+
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    return { success: false, message: "An unexpected error occurred" };
+  }
+}
+
 
 async function List_Leave(ownerid) {
   const { data, error } = await supabase
@@ -81,40 +152,6 @@ async function List_Leave(ownerid) {
 - The owner selects a set of students requesting leave from the table
 - they are added to temporary array that contains the application id
 */
-export const Remove_Student_Vacate = async (
-  applicationid,
-  studentid,
-  hostelid,
-  roomid
-) => {
-  //students_leaving is an array of students that are leaving array : [application id], we need to ensure that a particular owner only sees the application made for his hostel.
-
-  console.log(applicationid);
-  console.log(studentid);
-  console.log(hostelid);
-  console.log(roomid);
-  let { data: room, e2 } = await supabase
-    .from("rooms")
-    .select("currentvacancy")
-    .eq("hostelid", hostelid)
-    .eq("roomid", roomid);
-  //increment the vacancy for the room
-  console.log(room);
-  console.log(e2);
-  await supabase
-    .from("rooms")
-    .update({ currentvacancy: room[0].currentvacancy + 1 })
-    .eq("hostelid", hostelid)
-    .eq("roomid", roomid);
-  await supabase
-    .from("student")
-    .update({ hostelid: null, roomid: null })
-    .eq("studentid", studentid);
-  const { errors } = await supabase
-    .from("application")
-    .delete()
-    .eq("id", applicationid);
-};
 
 export const Reject_Application = async (applicationid) => {
   const { error } = await supabase
@@ -173,4 +210,50 @@ export const Get_Applicant_Names = async (hostelid) => {
   `);
 
   return application;
+};
+
+
+export const Remove_Student_Vacate = async (
+  applicationid,
+  studentid,
+  hostelid,
+  roomid
+) => {
+  //students_leaving is an array of students that are leaving array : [application id], we need to ensure that a particular owner only sees the application made for his hostel.
+  const { data: application, e1 } = await supabase
+    .from("application")
+    .select("id,hostelid,roomid,studentid")
+    .eq("id", studentid);
+
+  const roomid = application.roomid;
+  const hostelid = application.hostelid;
+  //const studentid = application.studentid;
+
+  //get the currentvacancy for the room the student is leaving from
+  let { current_vacancy: room, e2 } = await supabase
+    console.log(applicationid);
+  console.log(studentid);
+  console.log(hostelid);
+  console.log(roomid);
+  let { data: room, e2 } = await supabase
+    .from("rooms")
+    .select("currentvacancy")
+    .eq("hostelid", hostelid)
+    .eq("roomid", roomid);
+  //increment the vacancy for the room
+  console.log(room);
+  console.log(e2);
+  await supabase
+    .from("rooms")
+    .update({ currentvacancy: room[0].currentvacancy + 1 })
+    .eq("hostelid", hostelid)
+    .eq("roomid", roomid);
+  await supabase
+    .from("student")
+    .update({ hostelid: null, roomid: null })
+    .eq("studentid", studentid);
+  const { errors } = await supabase
+    .from("application")
+    .delete()
+    .eq("id", applicationid);
 };
