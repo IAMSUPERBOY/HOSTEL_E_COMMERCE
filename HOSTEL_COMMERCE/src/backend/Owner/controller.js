@@ -23,6 +23,38 @@ import Hostel from "../Hostel/model.js";
     constraint hostel_ownerid_fkey foreign key (ownerid) references owner (ownerid)
   ) tablespace pg_default; */
 
+  export async function AddOwner(owner) {
+    let { data: maxownerid, ownerror } = await supabase
+  .from('owner')
+  .select('ownerid')
+  .order('ownerid', { ascending: false })
+  .limit(1); // Fetch the largest ownerid
+
+    const { data, error } = await supabase.from("owner").insert([
+      {
+        
+        ownerid: maxownerid[0].ownerid+1,
+        ownerfname:owner.ownerfname ,
+        ownerlname: owner.ownerlname,
+        address: owner.address,
+        dateofbirth: owner.dateofbirth,
+        contactnumber: owner.contactnumber,
+       
+      },
+    ]);
+  
+    if (error) {
+      console.error("Error inserting hostel:", error);
+      throw error;  // Throw the error to be handled in the frontend
+    }
+  
+    return data;  // Return the inserted data (optional)
+  }
+
+
+
+
+
   export async function AddHostel(ownerid, hostel) {
     let { data: maxhostelid, hoserror } = await supabase
   .from('hostel')
@@ -225,16 +257,12 @@ export const Remove_Student_Vacate = async (
     .select("id,hostelid,roomid,studentid")
     .eq("id", studentid);
 
-  const roomid = application.roomid;
-  const hostelid = application.hostelid;
+  /* const roomid = application.roomid;
+  const hostelid = application.hostelid; */
   //const studentid = application.studentid;
 
   //get the currentvacancy for the room the student is leaving from
-  let { current_vacancy: room, e2 } = await supabase
-    console.log(applicationid);
-  console.log(studentid);
-  console.log(hostelid);
-  console.log(roomid);
+  
   let { data: room, e2 } = await supabase
     .from("rooms")
     .select("currentvacancy")
