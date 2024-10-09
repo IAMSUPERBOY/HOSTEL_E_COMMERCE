@@ -257,12 +257,21 @@ export const Remove_Student_Vacate = async (
     .select("id,hostelid,roomid,studentid")
     .eq("id", studentid);
 
+
+  //const roomid = application.roomid;
+  //const hostelid = application.hostelid;
+  //const studentid = application.studentid;
+
+  //get the currentvacancy for the room the student is leaving from
+
+
   /* const roomid = application.roomid;
   const hostelid = application.hostelid; */
   //const studentid = application.studentid;
 
   //get the currentvacancy for the room the student is leaving from
   
+
   let { data: room, e2 } = await supabase
     .from("rooms")
     .select("currentvacancy")
