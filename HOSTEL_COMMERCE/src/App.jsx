@@ -1,20 +1,26 @@
 import { useState } from "react";
-import AddNewHostel from "./views/Owner/AddNewHostel";
-import EditHostel from "./views/Owner/EditHostel"
-import AddNewRoom from "./views/Owner/AddNewRoom";
-import RequestPage from "./views/Owner/Request";
+import { BrowserRouter } from "react-router-dom";
+import React from "react";
+import Navbar from "./views/Owner/Navbar"
+import Footer from "./views/Owner/Footer"
+
+
+//import AddNewHostel from "./views/Owner/AddNewHostel";
+//import EditHostel from "./views/Owner/EditHostel"
+//import AddNewRoom from "./views/Owner/AddNewRoom";
+//import RequestPage from "./views/Owner/Request";
+import Homepage from "./views/Owner/Homepage";
 
 import "./App.css";
 
-function App() {
-  return( 
-  <>
-  <AddNewRoom/>
- </>
-  
-
-)
+function App({ page: PageComponent }) {
+  return (
+    <>
+      <Navbar />
+      <PageComponent /> {/* Dynamically rendering the component */}
+      <Footer />
+    </>
+  );
 }
 
 export default App;
-

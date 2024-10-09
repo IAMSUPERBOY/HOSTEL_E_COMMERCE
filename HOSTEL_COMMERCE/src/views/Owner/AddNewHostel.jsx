@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AddHostel } from "../../backend/Owner/controller";
-
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 function AddNewHostel() {
   const ownerid = 1; // Temporarily hardcoded
   

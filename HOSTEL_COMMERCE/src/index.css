@@ -2,5 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  z-index:30;
+  background-color: #0e0501;
+  color:#fff;
+  
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffe7b2;
+}
+
+.login-btn {
+  background-color: #ffe7b2;
+  color: #170f0f;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.login-btn:hover{
+  background-color: #614d23;
+  color: #fff8f8;
+
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  position: relative; 
+  padding: 5px;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff; 
+  left: 50%;  
+  bottom: 0;  
+  transition: width 0.3s ease, left 0.3s ease; 
+}
+
+.nav-item:hover::after {
+  width: 100%; 
+  left: 0; 
+}
+
+.nav-item:hover {
+  color: #ffffff;
+}
 
 
+/* Hero Section */
+.hero-section {
+  background-image: url("https://t3.ftcdn.net/jpg/07/96/11/32/360_F_796113285_ughajPbnwPzc8le5zK8szBpHc3EMacfl.jpg");
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+  font-family: "Caveat", cursive;
+
+  font-weight:600;
+  font-style: normal;
+  
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* Hero Section */
+.button-group .btn {
+    font-family: Arial, sans-serif;
+
+  font-weight:300;
+  font-style: normal;
+    background-color: #2a1e06;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid #ffe7b2; /* Adding a border */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Smooth transition for both size and border color */
+  }
+  
+  .btn:hover {
+    background-color: #4e3a19;
+    transform: scale(1.1); /* Enlarge the button on hover */
+    border-color: #ffffff; /* Change the border color on hover */
+  }
+
+
+
+/* Footer */
+.footer {
+  background: #ffe571; /* Example gradient from blue to cyan */
+
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info p {
+  margin-bottom: 10px;
+}
+
+.footer p {
+  color: #333;
+}
