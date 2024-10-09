@@ -8,6 +8,7 @@ import EditHostel from "./views/Owner/EditHostel"
 import AddNewRoom from "./views/Owner/AddNewRoom";
 import RequestPage from "./views/Owner/Request";
 import OwnerRegisration from "./views/Owner/OwnerRegistration";
+import StudentRegisration from "./views/Student/StudentRegistration";
 
 
 //import AddNewHostel from "./views/Owner/AddNewHostel";
@@ -18,7 +19,7 @@ import Homepage from "./views/Owner/Homepage";
 function App() {
   return( 
   <>
-  <OwnerRegisration />
+  <StudentRegisration/>
  </>
 
 import "./App.css";

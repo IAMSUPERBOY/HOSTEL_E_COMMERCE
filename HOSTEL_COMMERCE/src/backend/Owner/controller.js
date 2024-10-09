@@ -52,6 +52,45 @@ import Hostel from "../Hostel/model.js";
   }
 
 
+  export async function AddStudent(student) {
+    // Fetch the largest studentid
+    let { data: maxstudentid, studenterror } = await supabase
+      .from('student')
+      .select('studentid')
+      .order('studentid', { ascending: false })
+      .limit(1);
+  
+    // Insert new student with incremented studentid
+    const { data, error } = await supabase.from("student").insert([
+      {
+        studentid: maxstudentid[0].studentid + 1,
+        studentfname: student.studentfname,
+        studentlname: student.studentlname,
+        institutionname: student.institutionname,
+        yearofstudy: student.yearofstudy,
+        age: student.age,
+        gender: student.gender,
+        guardianname: student.guardianname,
+        phonenumber: student.phonenumber,
+        addressline1: student.addressline1,
+        addressline2: student.addressline2,
+        city: student.city,
+        pincode: student.pincode,
+        state: student.state,
+        currentresidence: student.currentresidence,
+      },
+    ]);
+  
+    if (error) {
+      console.error("Error inserting student:", error);
+      throw error; // Throw the error to be handled in the frontend
+    }
+  
+    return data; // Return the inserted data (optional)
+  }
+  
+
+
 
 
 
