@@ -88,12 +88,12 @@ function  AddNewRoom() {
             <form className="space-y-4 mt-4 ml-44 w-3/4 h-full" onSubmit={handleSubmit}>
                 <div className="">
                    <label className="text-sm font-medium ">CURRENT VACANCY</label>
-                   <input type="text" value={room.currentvacancy} onChange={handleChange} placeholder=""
+                   <input type="text" name="currentvacancy" value={room.currentvacancy} onChange={handleChange} placeholder=""
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"/>
                 </div>
                 <div className="">
                    <label className="block text-sm font-medium">RENT</label>
-                   <input type="text" value={room.rent} onChange={handleChange} placeholder=""
+                   <input type="text" name="rent" value={room.rent} onChange={handleChange} placeholder=""
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"/>
                 </div>
                 
@@ -156,13 +156,16 @@ function  AddNewRoom() {
             type="radio"
             name="acnonac"  // Same name for both radio buttons
             value="FALSE"
-            checked={room.acnonac === ""}  // Check this if value matches state
-            onChange="" // Handle state change
+            checked={room.acnonac === "FALSE"}  // Check this if value matches state
+            onChange={handleRadioChange} // Handle state change
             className="h-4 w-4 focus:ring-black-800"
           />
           <span className="ml-2 text-sm">NON-AC</span>
           </label>
         </div>
+        <button type="submit" className="absolute bottom-8 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-60">
+            ADD ROOM
+        </button>
             </form>
         </div>
 
@@ -180,9 +183,7 @@ function  AddNewRoom() {
         </div>
         
       <div className="">
-        <button className= "absolute bottom-8 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-60">
-            ADD ROOM
-        </button>
+        
       </div>
     </div>
 </div>

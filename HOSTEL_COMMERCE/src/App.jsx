@@ -3,6 +3,11 @@ import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import Navbar from "./views/Owner/Navbar"
 import Footer from "./views/Owner/Footer"
+import AddNewHostel from "./views/Owner/AddNewHostel";
+import EditHostel from "./views/Owner/EditHostel"
+import AddNewRoom from "./views/Owner/AddNewRoom";
+import RequestPage from "./views/Owner/Request";
+import OwnerRegisration from "./views/Owner/OwnerRegistration";
 
 
 //import AddNewHostel from "./views/Owner/AddNewHostel";
@@ -10,6 +15,11 @@ import Footer from "./views/Owner/Footer"
 //import AddNewRoom from "./views/Owner/AddNewRoom";
 //import RequestPage from "./views/Owner/Request";
 import Homepage from "./views/Owner/Homepage";
+function App() {
+  return( 
+  <>
+  <OwnerRegisration />
+ </>
 
 import "./App.css";
 
