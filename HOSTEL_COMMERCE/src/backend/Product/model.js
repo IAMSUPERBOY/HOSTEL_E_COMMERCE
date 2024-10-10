@@ -12,3 +12,4 @@ class Product
 }
 
 export default Product;
+export const cart={};
