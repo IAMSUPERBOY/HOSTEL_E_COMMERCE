@@ -49,7 +49,8 @@ function FindHostel() {
   // Filter hostels based on search query, price range, and rating
   const filteredHostels = hostels.filter(
     (hostel) =>
-      (hostel.hostelname.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (hostel.hostelname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        hostel.addressline1.toLowerCase().includes(searchQuery.toLowerCase())) &&
       hostel.startingprice >= priceRange[0] &&
       hostel.startingprice <= priceRange[1] &&
       hostel.rating >= ratingFilter
