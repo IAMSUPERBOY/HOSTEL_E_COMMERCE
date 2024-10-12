@@ -1,18 +1,26 @@
 import React from 'react';
-import './HostelCard.css';
+import './ItemCard.css';
 
 
 
 function HostelCard({ hostel, onClick }) {
   return (
-    <div className="hostel-card" onClick={onClick}>
-      <h3>{hostel.hostelname}</h3>
+    <div className="item-card" onClick={onClick}>
+      <div className="item-image">
+        {/* If you have an image URL, replace 'item.imageUrl' with your image source */}
+        <img src={hostel.imageUrl } alt={hostel.name} />
+      </div>
+      <div className="item-details">
+      <h3 className="item-name">{hostel.hostelname}</h3>
       <p>{hostel.addressline1}</p>
-      <p>Price: ₹{hostel.startingprice}</p> {/* Displaying the starting price */}
-      <p>Rating: {hostel.rating} stars</p>
+      <p className="item-price">Price: ₹{hostel.startingprice}</p> {/* Displaying the starting price */}
+      <p>Rating: {hostel.rating} </p>
+      </div>
     </div>
   );
 }
+
+
 
 
 

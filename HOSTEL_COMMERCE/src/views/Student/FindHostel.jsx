@@ -30,9 +30,7 @@ function FindHostel() {
     fetchHostels();
   }, []);
 
-  const handleHostelClick = (hostel) => {
-    setSelectedHostel(hostel);
-  };
+  
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -50,15 +48,14 @@ function FindHostel() {
   // Filter hostels based on search query, price range, and rating
   const filteredHostels = hostels.filter(
     (hostel) =>
-      (hostel.hostelname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        hostel.addressline1.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (hostel.hostelname.toLowerCase().includes(searchQuery.toLowerCase()) ) &&
       hostel.startingprice >= priceRange[0] &&
       hostel.startingprice <= priceRange[1] &&
       hostel.rating >= ratingFilter
   );
 
   return (
-    <div className="app">
+    <div className="find-container">
       <div className="hero-finder">
         <h1 className="finder-title">FIND NEW HOSTEL</h1>
       </div>
@@ -78,8 +75,8 @@ function FindHostel() {
             <label>Rating:</label>
             <select className="filterbox" onChange={handleRatingChange}>
               <option value="0">All</option>
-              <option value="4">4 Stars & Above</option>
-              <option value="4.5">4.5 Stars & Above</option>
+              <option value="4">4 & Above</option>
+              <option value="4.5">4.5 & Above</option>
             </select>
           </div>
         </div>
@@ -106,12 +103,7 @@ function FindHostel() {
         )}
       </div>
 
-      {selectedHostel && (
-        <HostelDetails
-          hostel={selectedHostel}
-          onClose={() => setSelectedHostel(null)}
-        />
-      )}
+      
     </div>
   );
 }

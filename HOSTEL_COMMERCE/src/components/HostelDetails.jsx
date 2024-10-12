@@ -4,6 +4,7 @@ import './HostelDetails.css';
 const HostelDetails = ({ hostel, onClose }) => {
   return (
     <div className="hostel-details">
+      
       <h2>{hostel.name}</h2>
       <p><strong>Location:</strong> {hostel.location}</p>
       <p><strong>Price:</strong> ₹{hostel.price}/month</p>

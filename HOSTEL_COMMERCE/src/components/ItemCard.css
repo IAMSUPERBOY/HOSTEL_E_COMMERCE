@@ -1,0 +1,62 @@
+.item-card {
+    border: 1px solid #ddd; /* Border around the card */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Inner padding */
+    margin: 16px; /* Space between cards */
+    cursor: pointer; /* Pointer on hover */
+    transition: box-shadow 0.3s; /* Smooth shadow transition */
+    width: 250px;
+    height:300px ;
+    
+  }
+  
+  .item-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+  }
+  
+  .item-image img {
+    max-width: 100%; /* Responsive image */
+    border-radius: 8px; /* Rounded corners for image */
+  }
+  
+  .item-details {
+    text-align: center; /* Center the text */
+  }
+  
+  .item-name {
+    font-size: 1.2em; /* Larger font for product name */
+    margin: 8px 0; /* Margin above and below */
+  }
+  
+  .item-price {
+    color: #27ae60; /* Green color for price */
+    font-weight: bold; /* Bold price */
+  }
+  
+  .item-condition {
+    font-size: 0.9em; /* Smaller font for condition */
+    color: #7f8c8d; /* Gray color for condition */
+  }
+  
+  .item-card {
+
+   
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .item-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .item-image {
+    width: 100%; /* Make the image responsive */
+    height: 150px; /* Ensures the image covers the area while maintaining aspect ratio */
+    border-radius: 4px; /* Optional: rounded corners for the image */
+    object-fit:cover;
+    overflow: hidden;
+    position:relative;
+  }
+ 

@@ -148,7 +148,7 @@ body {
 
 /* Footer */
 .footer {
-  background: #f0e9cc; /* Example gradient from blue to cyan */
+  background: #000000; /* Example gradient from blue to cyan */
 
   padding: 20px;
   display: flex;
@@ -161,5 +161,5 @@ body {
 }
 
 .footer p {
-  color: #333;
+  color: #ffe7b2;
 }

@@ -12,8 +12,8 @@ function Homepage() {
           <h1>Find Your Perfect Hostel & Shop Second-hand Essentials</h1>
           <p>Explore hostels and buy/sell essential items with ease</p>
           <div className="button-group">
-          <Link to="/add" ><button className="btn">FIND HOSTEL</button></Link>
-            <button className="btn">BUY ITEMS</button>
+          <Link to="/findhostel" ><button className="btn">FIND HOSTEL</button></Link>
+          <Link to="/buyitems" ><button className="btn">BUY ITEMS</button></Link>
             <button className="btn">SELL ITEMS</button>
           </div>
         </div>
