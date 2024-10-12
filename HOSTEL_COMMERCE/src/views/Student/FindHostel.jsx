@@ -1,65 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import "../../../src/App.css";
 import HostelCard from "../../components/HostelCard";
 import HostelDetails from "../../components/HostelDetails";
 
-// Example hostel data
-const hostels = [
-  {
-    id: 1,
-    name: "Green Valley Hostel",
-    location: "Near CET, Trivandrum",
-    price: 5000,
-    rating: 4.5,
-    details: "A cozy and affordable hostel near CET with great amenities.",
-  },
-  {
-    id: 2,
-    name: "Sunrise Hostel",
-    location: "Kowdiar, Trivandrum",
-    price: 6000,
-    rating: 4.8,
-    details: "Premium hostel with AC rooms and all basic facilities.",
-  },
-  {
-    id: 3,
-    name: "Blue Sky Hostel",
-    location: "Sreekariyam, Trivandrum",
-    price: 4500,
-    rating: 4.2,
-    details: "Economical hostel with clean rooms and a friendly atmosphere.",
-  },
-  {
-    id: 4,
-    name: "Green Valley Hostel",
-    location: "Near CET, Trivandrum",
-    price: 5000,
-    rating: 4.5,
-    details: "A cozy and affordable hostel near CET with great amenities.",
-  },
-  {
-    id: 5,
-    name: "Sunrise Hostel",
-    location: "Kowdiar, Trivandrum",
-    price: 6000,
-    rating: 4.8,
-    details: "Premium hostel with AC rooms and all basic facilities.",
-  },
-  {
-    id: 6,
-    name: "Blue Sky Hostel",
-    location: "Sreekariyam, Trivandrum",
-    price: 4500,
-    rating: 4.2,
-    details: "Economical hostel with clean rooms and a friendly atmosphere.",
-  },
-];
+import supabase from "../../backend/util/supabaseclient";
 
 function FindHostel() {
+  const [hostels, setHostels] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedHostel, setSelectedHostel] = useState(null);
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [ratingFilter, setRatingFilter] = useState(0);
+
+  // Fetch hostel data from Supabase
+  useEffect(() => {
+    const fetchHostels = async () => {
+      const { data, error } = await supabase
+        .from('hotel') // Corrected table name 'hotel'
+        .select('*'); 
+
+      if (error) {
+        console.error('Error fetching hostels:', error);
+      } else {
+        setHostels(data); // Store the hostel data in the state
+      }
+    };
+
+    fetchHostels();
+  }, []);
 
   const handleHostelClick = (hostel) => {
     setSelectedHostel(hostel);
@@ -81,10 +49,9 @@ function FindHostel() {
   // Filter hostels based on search query, price range, and rating
   const filteredHostels = hostels.filter(
     (hostel) =>
-      (hostel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        hostel.location.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      hostel.price >= priceRange[0] &&
-      hostel.price <= priceRange[1] &&
+      (hostel.hostelname.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      hostel.startingprice >= priceRange[0] &&
+      hostel.startingprice <= priceRange[1] &&
       hostel.rating >= ratingFilter
   );
 
@@ -127,7 +94,7 @@ function FindHostel() {
         {filteredHostels.length > 0 ? (
           filteredHostels.map((hostel) => (
             <HostelCard
-              key={hostel.id}
+              key={hostel.hostelid}
               hostel={hostel}
               onClick={() => handleHostelClick(hostel)}
             />

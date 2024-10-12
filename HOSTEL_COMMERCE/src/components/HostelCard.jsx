@@ -1,15 +1,19 @@
 import React from 'react';
 import './HostelCard.css';
 
-const HostelCard = ({ hostel, onClick }) => {
+
+
+function HostelCard({ hostel, onClick }) {
   return (
     <div className="hostel-card" onClick={onClick}>
-      <h2>{hostel.name}</h2>
-      <p>{hostel.location}</p>
-      <p>Price: ₹{hostel.price}/month</p>
-      <p>Rating: {hostel.rating} ⭐</p>
+      <h3>{hostel.hostelname}</h3>
+      <p>{hostel.addressline1}</p>
+      <p>Price: ₹{hostel.startingprice}</p> {/* Displaying the starting price */}
+      <p>Rating: {hostel.rating} stars</p>
     </div>
   );
-};
+}
+
+
 
 export default HostelCard;
