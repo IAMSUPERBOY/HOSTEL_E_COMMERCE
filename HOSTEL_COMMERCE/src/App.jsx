@@ -31,7 +31,7 @@ function App({ page: PageComponent }) {
         <>
           <Navbar />
           <PageComponent /> {/* Dynamically rendering the component */}
-          <Footer />
+          {/* <Footer /> */}
         </>
       )}
       {}

@@ -3,12 +3,13 @@ import {
   Get_Applicant_Names,
   Get_Application_Counts,
   Accept_Student,
+  ListHostel,
 } from "../../backend/Owner/controller";
 import JoinReq from "../../components/JoinReq";
 import LeaveReq from "../../components/LeaveReq";
-
-async function findName(studentid, hostelid) {
-  const data = await Get_Applicant_Names(hostelid);
+import credential from "../../credentials.json";
+async function findName(studentid, ownerid) {
+  const data = await Get_Applicant_Names();
   const student = data.find(
     (element) => element.student.studentid === studentid
   );
@@ -16,6 +17,7 @@ async function findName(studentid, hostelid) {
 }
 
 let joinreq;
+let join_updated=[];
 
 export default function RequestPage() {
   const [join, setJoin] = useState([]);
@@ -23,7 +25,7 @@ export default function RequestPage() {
   const [leave, setLeave] = useState([]);
   const [names, setNames] = useState({});
   function changePage() {
-    SetPage(!page)
+    SetPage(!page);
   }
 
   useEffect(() => {
@@ -33,7 +35,15 @@ export default function RequestPage() {
         (item) => item.status === "pending" && item.type === "JoinRequest"
       );
 
-      setJoin(joinreq);
+      ListHostel(credential.ownerid).then((hostel) => {
+        const join_updated = joinreq.filter((req) => 
+          hostel.some((hostelItem) => hostelItem.hostelid === req.hostelid)
+        );
+      
+        console.log(join_updated);
+        setJoin(join_updated);  
+      });
+    
       // Filtering for 'LeaveRequest' with 'pending' status
       let leavereq = data.filter(
         (item) => item.status === "pending" && item.type === "LeaveRequest"
@@ -57,15 +67,21 @@ export default function RequestPage() {
   return (
     <div>
       <div className="">
-        <button className="m-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" onClick={changePage}>
+        <button
+          className="m-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+          onClick={changePage}
+        >
           JOIN REQUEST({join.length})
         </button>
-        <button onClick={changePage} className="m-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+        <button
+          onClick={changePage}
+          className="m-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
+        >
           LEAVE REQUEST({leave.length})
         </button>
       </div>
       <div class="card bg-white shadow-md rounded-lg overflow-hidden">
-        {page==0 &&
+        {page == 0 &&
           join.map((item) => (
             <JoinReq
               key={item.studentid}
@@ -74,9 +90,10 @@ export default function RequestPage() {
               roomid={item.roomid}
               hostelid={item.hostelid}
               Name={names[item.studentid]}
+              content={item.content}
             />
           ))}
-        {page==1 &&
+        {page == 1 &&
           leave.map((item) => (
             <LeaveReq
               key={item.studentid}

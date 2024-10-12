@@ -1,9 +1,9 @@
 import React,{useState} from "react";
 import { EditHostel } from "../../backend/Owner/controller";
-
+import { useParams } from "react-router-dom";
 function EditHostelDetails() {
-    const hostelid = 1;
-
+    const {hostelid } = useParams();
+  
     const [hostel, setHostel] = useState({
       hostelname: "",
       description: "",
@@ -185,10 +185,11 @@ function EditHostelDetails() {
           </div>
           <button
             type="submit"
-            className="absolute bottom-5 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-60"
+            className="absolute bottom-5 mr-5 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-60"
           >
             EDIT HOSTEL
           </button>
+          
         </form>
       </div>
 
