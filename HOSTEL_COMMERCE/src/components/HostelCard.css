@@ -1,0 +1,25 @@
+.hostel-card {
+    border: 3px solid #585858;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 200px;
+    height:200px ;
+  }
+  
+  .hostel-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .hostel-card h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .hostel-card p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  

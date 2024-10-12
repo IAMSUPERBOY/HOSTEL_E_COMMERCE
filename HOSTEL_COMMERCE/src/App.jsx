@@ -11,18 +11,19 @@ import OwnerRegisration from "./views/Owner/OwnerRegistration";
 import StudentRegisration from "./views/Student/StudentRegistration";
 import Purachase_Page from "./views/Student/Shop/Purchase";
 import "./App.css";
-
+import FindHostel from "./views/Student/FindHostel";
 //import AddNewHostel from "./views/Owner/AddNewHostel";
 //import EditHostel from "./views/Owner/EditHostel"
 //import AddNewRoom from "./views/Owner/AddNewRoom";
 //import RequestPage from "./views/Owner/Request";
 import Homepage from "./views/Owner/Homepage";
-/* function App() {
+ function App() {
   return( 
   <>
-  <StudentRegisration/>
+  <FindHostel/>
  </>
- */
+) }
+/*
 let Page = 1;
 function App({ page: PageComponent }) {
   return (
@@ -30,7 +31,7 @@ function App({ page: PageComponent }) {
       {Page && (
         <>
           <Navbar />
-          <PageComponent /> {/* Dynamically rendering the component */}
+          <PageComponent /> {/* Dynamically rendering the component }
           <Footer />
         </>
       )}
@@ -38,5 +39,8 @@ function App({ page: PageComponent }) {
     </>
   );
 }
+  
+*/
+
 
 export default App;
