@@ -27,3 +27,41 @@ export const Consume_Item=async(productid,used)=>{
     //write code to delete item from new_products table 
     
 }
+
+export const ApplicationRequest = async (application, hostelid,studentid) => {
+  // Fetch the largest application ID
+  let { data: maxapplicationid, error: apperror } = await supabase
+    .from('application')
+    .select('id')
+    .order('id', { ascending: false })
+    .limit(1);
+
+  if (apperror) {
+    console.error("Error fetching max application ID:", apperror);
+    throw apperror;
+  }
+
+  const newId = maxapplicationid.length > 0 ? maxapplicationid[0].id + 1 : 1; // Increment max ID or start from 1 if table is empty
+
+  // Insert the new application entry
+  const { data, error } = await supabase.from("application").insert([
+    {
+      id: newId,
+      content: application.content,
+      type: 'JoinRequest',
+      status: 'pending',
+      hostelid: hostelid,
+      roomid: application.roomid,
+      studentid:studentid,
+      application_date: new Date().toISOString(),  // Use current timestamp
+    }
+  ]);
+
+  if (error) {
+    console.error("Error inserting application:", error);
+    throw error; // Throw the error to be handled in the frontend
+  }
+
+  return data;  // Return the inserted data (optional)
+};
+

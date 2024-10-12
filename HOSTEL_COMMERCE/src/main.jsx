@@ -19,6 +19,8 @@ import {
 import Checkout from './views/Student/Shop/Checkout.jsx';
 import Sell_Page from './views/Student/Shop/Sell_good.jsx';
 import Used_Buy from './views/Student/Shop/Sell_good.jsx';
+import HostelView from './views/Student/Viewhostel.jsx';
+import HostelDetails from './views/Owner/HostelDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,15 @@ const router = createBrowserRouter([
   {
     path:"Student/UsedBuy",
     element:<Used_Buy/>,
+  },
+  {
+    path:"Student/hostelview",
+    element:<HostelView/>,
+  },
+  {
+    path:"Hosteldetails",
+    element:<HostelDetails/>,
+
   }
     
 ]);
