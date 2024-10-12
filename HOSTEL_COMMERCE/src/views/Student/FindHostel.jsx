@@ -16,13 +16,14 @@ function FindHostel() {
   useEffect(() => {
     const fetchHostels = async () => {
       const { data, error } = await supabase
-        .from('hotel') // Corrected table name 'hotel'
+        .from('hostel') // Corrected table name 'hotel'
         .select('*'); 
 
       if (error) {
         console.error('Error fetching hostels:', error);
       } else {
         setHostels(data); // Store the hostel data in the state
+        console.log(data);
       }
     };
 
