@@ -13,7 +13,7 @@ return (
         <div class="w-12 h-12 rounded-full bg-gray-400"></div>
         <div class="flex-1">
           <h3 class="text-lg font-semibold">{Name}</h3>
-          <p class="text-sm text-gray-500">VIEW profile</p>
+          <p class="text-sm text-gray-500">{roomid}</p>
         </div>
         <div class="flex gap-2">
        

@@ -11,9 +11,11 @@ function Navbar() {
         <img src={logo1} alt="Logo" />
       </div>
       <ul className="nav-links">
-      <li><Link to="/ownerhome" className="nav-item">Home</Link></li>
-      <li><Link to="/add" className="nav-item">Add Hostel</Link></li>
-        <li><a href="#" className="nav-item">Manage Hostels</a></li>
+
+      <li><Link to="/Owner" className="nav-item">Home</Link></li>
+      <li><Link to="/Owner/add" className="nav-item">Add Hostel</Link></li>
+        <li><a href="/Owner/" className="nav-item">Manage Hostels</a></li>
+
         <li><a href="#" className="nav-item">View Requests</a></li>
         <li><a href="#" className="nav-item">About Us</a></li>
       </ul>

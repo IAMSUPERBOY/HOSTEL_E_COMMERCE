@@ -26,9 +26,18 @@ function App({ page: PageComponent }) {
 
   return (
     <>
+
       {!isOwnerStudentPage && renderNavbar()} {/* Render Navbar based on user type */}
       {PageComponent && (
         <PageComponent setUserType={setUserType} /> 
+
+      {Page && (
+        <>
+          <Navbar />
+          <PageComponent /> {/* Dynamically rendering the component */}
+          {/* <Footer /> */}
+        </>
+
       )}
       {!isOwnerStudentPage && <Footer />} {/* Render Footer only if it's not OwnerStudentPage */}
     </>
