@@ -1,40 +1,45 @@
 import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
-import React from "react";
-import Navbar from "./views/Owner/Navbar";
-import Footer from "./views/Owner/Footer";
-import AddNewHostel from "./views/Owner/AddNewHostel";
-import EditHostel from "./views/Owner/EditHostel";
-import AddNewRoom from "./views/Owner/AddNewRoom";
-import RequestPage from "./views/Owner/Request";
-import OwnerRegisration from "./views/Owner/OwnerRegistration";
-import StudentRegisration from "./views/Student/StudentRegistration";
-import Purachase_Page from "./views/Student/Shop/Purchase";
-import "./App.css";
+import OwnerNavbar from "./views/Owner/Navbar";
+import StudentNavbar from "./views/Student/Navbar";
+import Footer from "./views/Student/Footer"; // Assuming both Owner and Student have the same Footer
+import OwnerHomePage from "./views/Owner/Homepage";
+import StudentHomePage from "./views/Student/Homepage";
+import OwnerStudentPage from "./views/OwnerStudentPage.jsx"; // This is where setUserType is used
 
-//import AddNewHostel from "./views/Owner/AddNewHostel";
-//import EditHostel from "./views/Owner/EditHostel"
-//import AddNewRoom from "./views/Owner/AddNewRoom";
-//import RequestPage from "./views/Owner/Request";
-import Homepage from "./views/Owner/Homepage";
-/* function App() {
-  return( 
-  <>
-  <StudentRegisration/>
- </>
- */
-let Page = 1;
 function App({ page: PageComponent }) {
+  // State to manage the user type
+  const [userType, setUserType] = useState(null); // Initially null, not selected
+
+  // Check if the component passed is OwnerStudentPage
+  const isOwnerStudentPage = PageComponent === OwnerStudentPage;
+
+  // Conditionally render the navbar based on userType
+  const renderNavbar = () => {
+    console.log(userType);
+    if (userType === "owner") {
+      return <OwnerNavbar />;
+    } else if (userType === "student") {
+      return <StudentNavbar />;
+    }
+    return null; // No navbar if the user hasn't selected yet
+  };
+
   return (
     <>
+
+      {!isOwnerStudentPage && renderNavbar()} {/* Render Navbar based on user type */}
+      {PageComponent && (
+        <PageComponent setUserType={setUserType} /> 
+
       {Page && (
         <>
           <Navbar />
           <PageComponent /> {/* Dynamically rendering the component */}
           {/* <Footer /> */}
         </>
+
       )}
-      {}
+      {!isOwnerStudentPage && <Footer />} {/* Render Footer only if it's not OwnerStudentPage */}
     </>
   );
 }
