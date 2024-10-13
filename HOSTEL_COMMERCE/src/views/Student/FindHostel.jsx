@@ -23,14 +23,14 @@ function FindHostel() {
         console.error('Error fetching hostels:', error);
       } else {
         setHostels(data); // Store the hostel data in the state
-        console.log(data);
+       
       }
     };
 
     fetchHostels();
   }, []);
 
-  
+  console.log(hostels)
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);

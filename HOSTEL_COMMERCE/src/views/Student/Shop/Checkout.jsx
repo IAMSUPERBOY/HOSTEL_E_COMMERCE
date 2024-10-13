@@ -1,51 +1,19 @@
-/* import React, { useEffect, useState } from "react";
-import { Get_Cart } from "../../../backend/Product/controller";
-import { useLocation } from "react-router-dom";
-import CartItem from "../../../components/CartItem";
-
-export default function Checkout() {
-const [cart,setCart]=useState([])
-  const location = useLocation();
-  const studentid = location.state.id;
-  useEffect(() => {
-    Get_Cart(studentid).then((data) => {
-      setCart(data);
-      console.log(data[0].cart_items[0]);
-    });
-
-  }, []);
-  return (
-    <>
-      {studentid}
-      {cart.map((data,index) => {
-        data.cart_items.map((data_,i)=>{
-            return(
-                <>
-                sasaadsdasd
-                <CartItem key={i} productid={data_.productid}/> 
-                </>
-            )
-        })
-      })}
-    </>
-  );
-}
- */
 import React, { useEffect, useState } from "react";
 import { Get_Cart } from "../../../backend/Product/controller";
-import { useLocation } from "react-router-dom";
 import CartItem from "../../../components/CartItem";
+import credentials from "../../../credentials.json";
 import { Link } from "react-router-dom";
+
 export default function Checkout() {
   const [cart, setCart] = useState([]);
-  const location = useLocation();
-  const studentid = location.state.id;
+
+  const studentid = credentials.studentid;
 
   useEffect(() => {
     if (studentid) {
       Get_Cart(studentid).then((data) => {
         setCart(data);
-        console.log(data[0].cart_items[0]);
+        console.log(data[0]?.cart_items[0]); // Add optional chaining to avoid errors if cart_items is undefined
       });
     }
   }, [studentid]);
@@ -61,12 +29,12 @@ export default function Checkout() {
             </div>
           ))}
         </div>
-
       ))}
-    
-      <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full mt-4" >
-           Purchase
-          </button>
+      <Link to="/Student/Bill">
+      <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full mt-4">
+        Purchase
+      </button>
+      </Link>
     </>
   );
 }

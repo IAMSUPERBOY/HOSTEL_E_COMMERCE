@@ -1,15 +1,14 @@
 import React from "react";
 
-const Invoice = () => {
+const Invoice = ({totalP,products}) => {
   // Sample data for products
-  const products = [
+  /* const products = [
     { id: "P001", name: "Product A", price: 30 },
     { id: "P002", name: "Product B", price: 50 },
     { id: "P003", name: "Product C", price: 40 },
   ];
-
+ */
   // Calculate total price
-  const totalPrice = products.reduce((sum, product) => sum + product.price, 0);
 
   return (
     <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-md rounded-lg">
@@ -34,9 +33,9 @@ const Invoice = () => {
           <tbody>
             {products.map((product) => (
               <tr key={product.id} className="bg-white even:bg-gray-50">
-                <td className="py-4 px-5 border-b">{product.id}</td>
-                <td className="py-4 px-5 border-b">{product.name}</td>
-                <td className="py-4 px-5 text-right border-b">{product.price.toFixed(2)}</td>
+                <td className="py-4 px-5 border-b">{product.productid}</td>
+                <td className="py-4 px-5 border-b">{product.productname}</td>
+                <td className="py-4 px-5 text-right border-b">{product.price}</td>
               </tr>
             ))}
           </tbody>
@@ -46,7 +45,7 @@ const Invoice = () => {
       {/* Total Price */}
       <div className="flex justify-between items-center py-5 mt-5 border-t">
         <span className="font-semibold text-lg">Total:</span>
-        <span className="text-lg font-semibold">${totalPrice.toFixed(2)}</span>
+        <span className="text-lg font-semibold">${totalP.toFixed(2)}</span>
       </div>
 
       {/* Thank You Message */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "../../../src/App.css";
 import ItemCard from "../../components/ItemCard";
 import supabase from "../../backend/util/supabaseclient"; // Modify this path as per your setup
-
+import { Link } from 'react-router-dom';
 function BuyItems() {
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,9 +66,16 @@ function BuyItems() {
 
   return (
     <div className="find-container">
-      <div className="hero-finder">
-        <h1 className="finder-title">BUY ITEMS</h1>
-      </div>
+      <div className="hero-finder flex justify-between items-center">
+  <h1 className="finder-title">BUY ITEMS</h1>
+ <Link to="/Student/Checkout">
+  <button className="bg-blue-500 text-white px-4 py-2 m-5 rounded hover:bg-blue-600">
+    Checkout
+  </button>
+ </Link>
+
+</div>
+
 
       <div className="filter-and-search-box">
         <div className="filter-section">

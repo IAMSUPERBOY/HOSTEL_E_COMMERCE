@@ -19,13 +19,14 @@ import Used_Buy from './views/Student/Shop/Sell_good.jsx';
 import StudentHomePage from './views/Student/Homepage.jsx';
 import FindHostel from './views/Student/FindHostel.jsx';
 import Bill from "./views/Student/Shop/Bill.jsx";
-import Homepage from "./views/Owner/Homepage";
+
 import HostelView from "./views/Student/Viewhostel.jsx";
 import HostelDetails from "./views/Owner/HostelDetails.jsx";
 import HostelList from "./views/Owner/HostelList.jsx";
 import EditHostelDetails from "./views/Owner/EditHostel.jsx";
 import RequestPage from "./views/Owner/Request.jsx";
 import AddNewRoom from "./views/Owner/AddNewRoom.jsx";
+import SellUsedGoods from './views/Student/StudentSell.jsx';
 
 function MainApp() {
   const [userType, setUserType] = useState(null); // Define userType and setUserType
@@ -75,23 +76,36 @@ function MainApp() {
 
   {
     path: "Student",
-    element: <Purachase_Page />,
+    element: <App page={StudentHomePage} />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "Student/Checkout",
-    element: <Checkout />,
+    /* element: <Checkout />, */
+    element: <App page={Checkout} />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "Student/Bill",
-    element: <Bill />,
+    /* element: <Bill /> */
+    element: <App page={Bill} />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: "Student/UsedBuy",
-    element: <Used_Buy />,
+    path: "Student/Buy",
+   /*  element: <Used_Buy />, */
+   element: <App page={BuyItems} />,
+   errorElement: <ErrorPage />,
   },
   {
-    path: "Student/hostelview",
-    element: <HostelView />,
+    path: "Student/UsedSell",
+    /* element: <SellUsedGoods />, */
+    element: <App page={SellUsedGoods} />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "Student/FindHostel",
+    element: <FindHostel/>,
   },
   {
     path: "Hosteldetails",
