@@ -8,7 +8,6 @@ import ErrorPage from "./views/Owner/error-page.jsx";
 import Purachase_Page from "./views/Student/Shop/Purchase.jsx";
 import AddNewHostel from "./views/Owner/AddNewHostel";
 
-import Bill from './views/Student/Shop/Bill.jsx';
 import OwnerHomePage from "./views/Owner/Homepage";
 import BuyItems from './views/Student/BuyItems.jsx';
 import OwnerStudentPage from "./views/OwnerStudentPage.jsx";
@@ -39,7 +38,7 @@ function MainApp() {
     },
     {
     path: "Owner",
-    element: <App page={OwnerHomepage} />,
+    element: <App page={OwnerHomePage} />,
     errorElement: <ErrorPage />,
   },
   {
@@ -106,11 +105,9 @@ function MainApp() {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-
     <MainApp />
   </StrictMode>,
 
-    <RouterProvider router={router} />
-  </StrictMode>
+  
 
 );

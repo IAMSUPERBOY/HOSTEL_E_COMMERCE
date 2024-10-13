@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
 
-function Homepage() {
+function OwnerHomepage() {
   return (
     <div className="app">
       <div className="hero-section">
@@ -30,4 +30,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default OwnerHomepage;
