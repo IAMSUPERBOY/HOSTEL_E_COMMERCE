@@ -7,7 +7,7 @@ function HostelCard({ hostel, onClick }) {
   return (
     <div className="item-card" onClick={onClick}>
       <div className="item-image">
-        {/* If you have an image URL, replace 'item.imageUrl' with your image source */}
+        
         <img src={hostel.imageUrl } alt={hostel.name} />
       </div>
       <div className="item-details">

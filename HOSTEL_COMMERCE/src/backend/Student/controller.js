@@ -34,7 +34,7 @@ export const ApplicationRequest = async (application, hostelid, studentid) => {
     .select("id")
     .order("id", { ascending: false })
     .limit(1);
-
+  
   if (apperror) {
     console.error("Error fetching max application ID:", apperror);
     throw apperror;
@@ -65,15 +65,12 @@ export const ApplicationRequest = async (application, hostelid, studentid) => {
 };
 
 export async function AddUsedProduct(owner) {
-  
-
   const { data, error } = await supabase.from("used_products").insert([
     {
-      productname : owner.productname,
+      productname: owner.productname,
       category: owner.category,
       price: owner.price,
       studentid: owner.studentid,
-      
     },
   ]);
 
@@ -84,4 +81,3 @@ export async function AddUsedProduct(owner) {
 
   return data; // Return the inserted data (optional)
 }
-

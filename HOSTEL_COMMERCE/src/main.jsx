@@ -108,6 +108,12 @@ function MainApp() {
     element: <FindHostel/>,
   },
   {
+    path: "Student/FindHostel/:hostelid",
+    /* element: <SellUsedGoods />, */
+    element: <App page={HostelView} />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "Hosteldetails",
     element: <HostelDetails />,
   },

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import "../../../src/App.css";
 import HostelCard from "../../components/HostelCard";
 import HostelDetails from "../../components/HostelDetails";
-
+import { useNavigate } from 'react-router-dom';
 import supabase from "../../backend/util/supabaseclient";
 
 function FindHostel() {
+  const navigate=useNavigate();
   const [hostels, setHostels] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedHostel, setSelectedHostel] = useState(null);
@@ -30,7 +31,10 @@ function FindHostel() {
     fetchHostels();
   }, []);
 
-  console.log(hostels)
+  console.log(hostels);
+  const handleHostelClick = (hostelid) => {
+    navigate(`/Student/FindHostel/${hostelid}`); // Navigate to the specific hostel's URL
+  };
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -95,7 +99,7 @@ function FindHostel() {
             <HostelCard
               key={hostel.hostelid}
               hostel={hostel}
-              onClick={() => handleHostelClick(hostel)}
+              onClick={() => handleHostelClick(hostel.hostelid)}
             />
           ))
         ) : (
