@@ -4,7 +4,7 @@ import supabase from "../../backend/util/supabaseclient";
 import { GetHostel } from "../../backend/Owner/controller";
 import { useParams,useNavigate } from "react-router-dom";
 import credentials from "../../credentials.json";
-import { checkUser } from "../../backend/util/checkUser";
+//import { checkUser } from "../../backend/util/checkUser";
 
 const studentid=credentials.studentid;
 export const HostelView = () => {
