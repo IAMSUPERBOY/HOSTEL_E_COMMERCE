@@ -20,7 +20,7 @@ function ItemCard({ item, onClick }) {
       </div>
       {
   item.condition === "Used" ? (
-    <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => handle_Add(studentid, item.productid)}>
+    <button className="bg-blue-500 text-white px-4 py-2 rounded" >
       Buy Used
     </button>
   ) : (
