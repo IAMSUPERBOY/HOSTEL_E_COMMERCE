@@ -332,7 +332,7 @@ function calculateTotalOccupants(room_vac_type) {
 export const ListHostel = async (ownerid) => {
   let { data: hostel, e1 } = await supabase
     .from("hostel")
-    .select("hostelid,hostelname,capacity,addressline1,addressline2")
+    .select("hostelid,hostelname,capacity,addressline1,addressline2,imageUrl")
     .eq("ownerid", ownerid);
 
   const hostelWithInmates = await Promise.all(
