@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ApplicationRequest } from "../../backend/Student/controller";
 import supabase from "../../backend/util/supabaseclient";
-import { GetHostel } from "../../backend/Owner/controller";
+import { GetHostel,GetRooms } from "../../backend/Owner/controller";
 import { useParams,useNavigate } from "react-router-dom";
 import credentials from "../../credentials.json";
 //import { checkUser } from "../../backend/util/checkUser";
@@ -27,11 +27,18 @@ export const HostelView = () => {
         } else {
           console.error("No hostel data found");
         }
+        GetRooms(hostelid).then((data) => {
+          setRooms(data);
+        });
       } catch (error) {
         console.error("Error fetching hostel:", error);
       } finally {
         setLoading(false); // Stop loading once the data fetch is complete
       }
+     
+      
+    
+
     };
 
     // Fetch available room IDs for the hostel
@@ -160,39 +167,47 @@ export const HostelView = () => {
         </p>
         <p className="mb-4 text-gray-700">{hostel.description}</p>
 
-        {/* Rooms section as cards */}
-        <div className="mt-5">
-          <h2 className="text-2xl font-semibold text-gray-800">
-            Available Rooms
-          </h2>
-          <div className="flex gap-5 mt-3">
-            {rooms.map((room) => (
-              <div
-                key={room.id}
-                className="bg-white p-4 rounded-lg text-center shadow-md w-36"
-              >
-                <div className="w-28 h-24 bg-gray-300 mb-3"></div>{" "}
-                {/* Placeholder for room image */}
-                <p>{room.name}</p>
-              </div>
-            ))}
+        {/* Rooms section */}
+        {/* Uncomment and modify the rooms section based on your requirements */}
+        {rooms && (
+          <div className="m-5">
+            <h2 className="text-2xl  font-semibold">Rooms</h2>
+            <div className="flex gap-5 mt-3">
+              {rooms.map((room) => (
+                <div
+                  key={room.id}
+                  className="bg-white p-4 rounded-lg text-center shadow-md w-36"
+                >
+                  {/* <div className="w-28 h-24 bg-gray-300 mb-3"></div> */}
+
+                  <p>{room.acnonac ? "AC" : "Non-AC"}</p>
+                  <p>{room.roomtype}</p>
+
+                  <p>VACANCY:{room.currentvacancy}</p>
+                  <p>RENT:{room.rent}</p>
+                </div>
+              ))}
+             
+            </div>
           </div>
-        </div>
+        )}
+      
       </div>
 
       {/* Right section for hostel image and request form */}
-      <div className="w-2/5 flex flex-col">
+      <div className=" mt-8 w-2/5 flex flex-col ">
         {/* Image container */}
-        <div className="w-full bg-white h-3/6 p-5 rounded-lg shadow-md mb-4">
-          <img
-            src="path-to-hostel-image.jpg"
-            alt="Hostel"
-            className="h-auto object-cover rounded-md transition-transform transform hover:scale-105"
-          />
-        </div>
+        {/* <div className="flex items-start w-full max-w-lg"> */}
+  <div className="w-5/6 h-72 bg-gray-300 mr-4 rounded-2xl object-cover">
+            <img
+              src={hostel.imageUrl}
+              alt={hostel.name}
+              className="w-full h-full object-cover rounded-2xl "
+            />
+    </div> 
 
         {/* Request to Join Form */}
-        <div className="mt-8 p-5 rounded-lg shadow-md">
+        <div className="mt-8 p-5 rounded-lg ">
           <h2 className="text-2xl font-semibold text-gray-800">
             Request to Join
           </h2>
