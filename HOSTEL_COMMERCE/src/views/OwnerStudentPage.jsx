@@ -19,14 +19,14 @@ function OwnerStudentPage({ setUserType }) {
         
         {/* Buttons */}
         <div className="flex space-x-4">
-        <Link to="/Owner" ><button 
+        <Link to="/LoginOwner" ><button 
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
             onClick={() => onClick('owner')}
           >
             Owner
           </button></Link>
 
-          <Link to="/Student" ><button 
+          <Link to="/LoginStudent" ><button 
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" 
             onClick={() => onClick('student')}
           >

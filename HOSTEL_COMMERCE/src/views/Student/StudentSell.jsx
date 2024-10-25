@@ -12,6 +12,7 @@ export const SellUsedGoods = () => {
     condition: "",
     description: "",
     image: null,
+    studentid:credentials.studentid
   });
 
   const [loading, setLoading] = useState(false);

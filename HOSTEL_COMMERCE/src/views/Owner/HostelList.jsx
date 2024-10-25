@@ -23,6 +23,7 @@ export const HostelList = () => {
           key={hostel.id}
           className="bg-white rounded-lg shadow-md p-4 mb-4 flex justify-between items-center"
         >
+
           <div className="flex items-start w-full max-w-lg">
   <div className="w-40 h-36 bg-gray-300 mr-4 rounded object-cover">
             <img
@@ -42,6 +43,8 @@ export const HostelList = () => {
     <p>{hostel.addressline2}</p> {/* Added Address Line 2 */}
   </div>
 </div>
+
+
 
           <div className="flex space-x-2">
             <Link to={`/Owner/HostelDetails/${hostel.hostelid}`}>
