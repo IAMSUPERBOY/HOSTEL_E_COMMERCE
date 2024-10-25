@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { EditHostel } from "../../backend/Owner/controller";
 import { useParams } from "react-router-dom";
-
 import supabase from "../../backend/util/supabaseclient";
-
 import { decode } from "base64-arraybuffer";
 
 function EditHostelDetails() {
@@ -22,12 +20,12 @@ function EditHostelDetails() {
     contactnumber: "",
     gender: "",
     rating: "",
-    imageUrl: "", // To store the URL of the uploaded image
+    imageUrl: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [imageFile, setImageFile] = useState(null); // State to hold the selected file
+  const [imageFile, setImageFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,102 +67,54 @@ function EditHostelDetails() {
       setLoading(false);
       return;
     }
+
     try {
-      // Upload image if a file was selected
-
       if (imageFile) {
-
-        const fileName = `public/${Date.now()}`; // Unique filename
-
-
-
-        // Decode the base64 string to binary
-
+        const fileName = `public/${Date.now()}`;
         const decodedFile = decode(imageFile);
 
-
-
-        // Upload to Supabase storage
-
         const { data, error: uploadError } = await supabase.storage
-
           .from("hostels_2")
-
           .upload(fileName, decodedFile, { contentType: "image/jpeg", upsert: true });
 
-
-
         if (uploadError) {
-
           console.error("Upload error:", uploadError.message);
-
           throw new Error(uploadError.message);
-
         }
-
-
 
         console.log("File uploaded successfully:", data);
 
-
-
-        // Get the public URL of the uploaded file
-
         const { publicURL, error: urlError } = supabase.storage
-
           .from("hostels_2")
-
           .getPublicUrl(data.path);
 
-
-
         if (urlError) {
-
           console.error("Error getting public URL:", urlError.message);
-
           throw new Error(urlError.message);
-
         }
 
-
-
-        formattedHostel.imageUrl = `https://seqmuvembwjhrrevewxr.supabase.co/storage/v1/object/public/hostels_2/${fileName}`; // Store the public URL in hostel data
-
+        formattedHostel.imageUrl = `https://seqmuvembwjhrrevewxr.supabase.co/storage/v1/object/public/hostels_2/${fileName}`;
         console.log("Public URL:", formattedHostel.imageUrl);
-
       }
-      await EditHostel(hostelid, formattedHostel); // Call the backend function
+
+      await EditHostel(hostelid, formattedHostel);
       alert("Hostel updated successfully");
       setHostel({
-
         hostelname: "",
-
         description: "",
-
         addressline1: "",
-
         addressline2: "",
-
         city: "",
-
         pincode: "",
-
         state: "",
-
         capacity: "",
-
         type: "",
-
         contactnumber: "",
-
         gender: "",
-
         imageUrl: "",
-
       });
 
-      setImageFile(null); // Reset the image file
-      // Optionally reset form fields here
+      setImageFile(null);
     } catch (error) {
       console.error("Error updating hostel:", error);
       setError("Failed to update hostel. Please try again.");
@@ -174,27 +124,17 @@ function EditHostelDetails() {
   };
 
   const handleFileChange = (e) => {
-
-    const file = e.target.files[0]; // Capture the selected file
-
+    const file = e.target.files[0];
     const fileReader = new FileReader();
 
-
-
     fileReader.onloadend = function () {
-
-      const base64String = fileReader.result.split(",")[1]; // Extract base64 string
-
-      setImageFile(base64String); // Store base64 string
-
+      const base64String = fileReader.result.split(",")[1];
+      setImageFile(base64String);
     };
 
-
-
-    fileReader.readAsDataURL(file); // Read the file as a data URL
-
+    fileReader.readAsDataURL(file);
   };
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setHostel((prevHostel) => ({
@@ -212,205 +152,209 @@ function EditHostelDetails() {
   };
 
   return (
-    <div className="container">
-      <h1 className="text-xl font-medium mt-8 ml-8">EDIT HOSTEL</h1>
-      <div className="flex flex-col md:flex-row gap-24 mt-8">
-        <div className="flex-1">
-          <form
-            className="space-y-4 mt-0 ml-44 w-3/4 h-screen"
-            onSubmit={handleSubmit}
-          >
-            <div className="">
-              <label className="text-sm font-medium ">NAME</label>
-              <input
-                type="text"
-                name="hostelname"
-                value={hostel.hostelname}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">DESCRIPTION</label>
-              <textarea
-                name="description"
-                value={hostel.description}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">
-                CONTACT NUMBER
-              </label>
-              <input
-                type="text"
-                name="contactnumber"
-                value={hostel.contactnumber}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">
-                ADDRESS LINE 1
-              </label>
-              <input
-                type="text"
-                name="addressline1"
-                value={hostel.addressline1}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">
-                ADDRESS LINE 2
-              </label>
-              <input
-                type="text"
-                name="addressline2"
-                value={hostel.addressline2}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">CITY</label>
-              <input
-                type="text"
-                name="city"
-                value={hostel.city}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">PINCODE</label>
-              <input
-                type="text"
-                name="pincode"
-                value={hostel.pincode}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">STATE</label>
-              <input
-                type="text"
-                name="state"
-                value={hostel.state}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium">CAPACITY</label>
-              <input
-                type="text"
-                name="capacity"
-                value={hostel.capacity}
-                onChange={handleChange}
-                className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <button
-              type="submit"
-              className="absolute bottom-5 mr-5 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-60"
-            >
-              EDIT HOSTEL
-            </button>
-          </form>
+    <div className="min-h-screen bg-gray-100 flex flex-col">
+      <h1 className="text-xl font-semibold text-center mb-4">Edit Hostel</h1>
+      <form className="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto space-y-4" onSubmit={handleSubmit}>
+      
+        <div>
+          <label className="block text-sm font-medium">Hostel Name</label>
+          <input
+            type="text"
+            name="hostelname"
+            value={hostel.hostelname}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Description</label>
+          <textarea
+            name="description"
+            value={hostel.description}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Contact Number</label>
+          <input
+            type="text"
+            name="contactnumber"
+            value={hostel.contactnumber}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Address Line 1</label>
+          <input
+            type="text"
+            name="addressline1"
+            value={hostel.addressline1}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Address Line 2</label>
+          <input
+            type="text"
+            name="addressline2"
+            value={hostel.addressline2}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">City</label>
+          <input
+            type="text"
+            name="city"
+            value={hostel.city}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Pincode</label>
+          <input
+            type="text"
+            name="pincode"
+            value={hostel.pincode}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">State</label>
+          <input
+            type="text"
+            name="state"
+            value={hostel.state}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium">Capacity</label>
+          <input
+            type="number"
+            name="capacity"
+            value={hostel.capacity}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            required
+          />
         </div>
 
-        <div className="mt-1 h-screen flex-1 space-y-6 relative">
-          <div className="mb-4">
-            <div>
-              <label className="text-sm font-medium">HOSTEL PICS</label>
-              <div className="mt-2 w-96 h-48 bg-gray-200 flex items-center justify-center border border-dashed border-gray-300 rounded-md">
-                <p>Upload Image</p>
-              </div>
-              <label
-                className="block text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor="file_input"
-              >
-                Upload file
-              </label>
-              {/* <input
-              className="block w-96 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:placeholder-gray-400"
-              id="file_input"
-              type="file"
-            /> */}
-            </div>
-            <p className="mt-8 block text-sm font-medium">TYPE</p>
-            <div className="flex items-center space-x-6 mt-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="type"
-                  value="hostel"
-                  checked={hostel.type === "hostel"}
-                  onChange={handleRadioChange}
-                  className="h-4 w-4 text-black-500 focus:ring-blue-400"
-                />
-                <span className="ml-2 text-sm">HOSTEL</span>
-              </label>
-
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="type"
-                  value="PG"
-                  checked={hostel.type === "PG"}
-                  onChange={handleRadioChange}
-                  className="h-4 w-4 focus:ring-black-800"
-                />
-                <span className="ml-2 text-sm">PG</span>
-              </label>
-            </div>
-          </div>
-          <div>
-            <p className="block text-sm font-medium">GENDER</p>
-            <div className="flex items-center space-x-6 mt-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="boys"
-                  checked={hostel.gender === "boys"}
-                  onChange={handleRadioChange}
-                  className="h-4 w-4  focus:ring-blue-400"
-                />
-                <span className="ml-2 text-sm">BOYS</span>
-              </label>
-
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="girls"
-                  checked={hostel.gender === "girls"}
-                  onChange={handleRadioChange}
-                  className="h-4 w-4 text-black-500 focus:ring-blue-400"
-                />
-                <span className="ml-2 text-sm">GIRLS</span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="mixed"
-                  checked={hostel.gender === "mixed"}
-                  onChange={handleRadioChange}
-                  className="h-4 w-4 focus:ring-blue-400"
-                />
-                <span className="ml-2 text-sm">MIXED</span>
-              </label>
-            </div>
-          </div>
+        <div>
+          <label className="block text-sm font-medium">Upload Hostel Image</label>
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="mt-1 w-full px-4 py-2 border rounded-md"
+          />
         </div>
-      </div>
+
+        <p className="mt-4 block text-sm font-medium">Type</p>
+        <div className="flex items-center space-x-4 mt-2">
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="type"
+              value="hostel"
+              checked={hostel.type === "hostel"}
+              onChange={handleRadioChange}
+              className="mr-2"
+              required
+            />
+            Hostel
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="type"
+              value="PG"
+              checked={hostel.type === "PG"}
+              onChange={handleRadioChange}
+              className="mr-2"
+              required
+            />
+            PG
+          </label>
+        </div>
+
+        <p className="mt-4 block text-sm font-medium">Gender</p>
+        <div className="flex items-center space-x-4 mt-2">
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={hostel.gender === "male"}
+              onChange={handleRadioChange}
+              className="mr-2"
+              required
+            />
+            Male
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={hostel.gender === "female"}
+              onChange={handleRadioChange}
+              className="mr-2"
+              required
+            />
+            Female
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="gender"
+              value="mixed"
+              checked={hostel.gender === "mixed"}
+              onChange={handleRadioChange}
+              className="mr-2"
+              required
+            />
+            Mixed
+          </label>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Rating</label>
+          <input
+            type="number"
+            name="rating"
+            value={hostel.rating}
+            onChange={handleChange}
+            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            min="1"
+            max="5"
+            required
+          />
+        </div>
+
+        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className={`mt-4 w-full px-4 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 ${loading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"}`}
+        >
+          {loading ? "Updating..." : "Update Hostel"}
+        </button>
+      </form>
     </div>
   );
 }

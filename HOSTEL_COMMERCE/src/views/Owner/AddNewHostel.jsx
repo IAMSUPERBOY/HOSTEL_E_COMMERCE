@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { AddHostel } from "../../backend/Owner/controller";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import credentials from "../../credentials.json"
+import supabase from "../../backend/util/supabaseclient";
+import { decode } from 'base64-arraybuffer'
+
 
 function AddNewHostel() {
-  const ownerid = credentials.ownerid; // Temporarily hardcoded
+  const ownerid = 1; // Temporarily hardcoded
 
   const [hostel, setHostel] = useState({
     hostelname: "",
@@ -19,11 +21,123 @@ function AddNewHostel() {
     type: "",
     contactnumber: "",
     gender: "",
-    rating: "",
+    imageUrl: "", // To store the URL of the uploaded image
   });
-
+  const [imageFile, setImageFile] = useState(null); // State to hold the selected file
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const validateInputs = () => {
+    const requiredFields = [
+      "hostelname",
+      "addressline1",
+      "city",
+      "pincode",
+      "state",
+      "capacity",
+      "gender",
+      "type",
+      "description",
+      "contactnumber",
+    ];
+
+    for (let field of requiredFields) {
+      if (!hostel[field]) {
+        setError(`${field.charAt(0).toUpperCase() + field.slice(1)} is required`);
+        return false;
+      }
+    }
+    return true;
+  };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError("");
+
+  //   const formattedHostel = {
+  //     ...hostel,
+  //     capacity: parseInt(hostel.capacity, 10),
+  //     pincode: parseInt(hostel.pincode, 10),
+  //     rating: 0,
+  //   };
+
+  //   if (!validateInputs()) {
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   try {
+  //     // Upload image if a file was selected
+  //     // if (imageFile) {
+  //     //   console.log(imageFile);
+  //     //   const { data, error } = await supabase.storage.from("hostels_2").upload(`im/${Date.now()}`,
+  //     //   "data:image/jpeg;base64," + imageFile, {contentType: 'image/jpeg', upsert: true});
+
+  //     //   console.log(`${Date.now()}`);
+
+
+  //     //   if (error) {
+  //     //     console.error("Upload error:", uploadError.message);
+  //     //     throw new Error(uploadError.message);
+  //     //   }
+      
+  //     //   console.log("File uploaded successfully:", data);
+        
+  //     //   const { publicURL, error: urlError } = supabase.storage
+  //     //     .from("hostels")
+  //     //     .getPublicUrl(data.path);
+      
+  //     //   if (urlError) {
+  //     //     console.error("Error getting public URL:", urlError.message);
+  //     //     throw new Error(urlError.message);
+  //     //   }
+      
+  //     //   formattedHostel.imageUrl = publicURL;
+  //     //   console.log("Public URL:", publicURL);
+  //     // }
+  //     if (imageFile) {
+  //       const fileName = `im/${Date.now()}`; // Unique filename
+
+  //       // Decode the base64 string to binary
+  //       const decodedFile = decode(imageFile);
+
+  //       // Upload to Supabase storage
+  //       const { data, error: uploadError } = await supabase.storage
+  //         .from("hostels_2")
+  //         .upload(fileName, decodedFile, { contentType: "image/jpeg", upsert: true });
+
+  //       if (uploadError) {
+  //         console.error("Upload error:", uploadError.message);
+  //         throw new Error(uploadError.message);
+  //       }
+  //     }
+
+  //     await AddHostel(ownerid, formattedHostel); // Call the backend function
+  //     alert("Hostel added successfully");
+  //     // Reset the form after successful submission
+  //     setHostel({
+  //       hostelname: "",
+  //       description: "",
+  //       addressline1: "",
+  //       addressline2: "",
+  //       city: "",
+  //       pincode: "",
+  //       state: "",
+  //       capacity: "",
+  //       type: "",
+  //       contactnumber: "",
+  //       gender: "",
+  //       imageUrl: "",
+  //     });
+  //     setImageFile(null); // Reset the image file
+  //   } catch (error) {
+  //     console.error("Error adding hostel:", error);
+  //     setError("Failed to add hostel. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,39 +151,64 @@ function AddNewHostel() {
       rating: 0,
     };
 
-    const validateInputs = () => {
-      const requiredFields = [
-        "hostelname",
-        "addressline1",
-        "city",
-        "pincode",
-        "state",
-        "capacity",
-        "gender",
-        "type",
-        "description",
-        "contactnumber",
-      ];
-
-      for (let field of requiredFields) {
-        if (!formattedHostel[field]) {
-          setError(
-            `${field.charAt(0).toUpperCase() + field.slice(1)} is required`
-          );
-          return false;
-        }
-      }
-      return true;
-    };
-
     if (!validateInputs()) {
       setLoading(false);
       return;
     }
 
     try {
+      // Upload image if a file was selected
+      if (imageFile) {
+        const fileName = `public/${Date.now()}`; // Unique filename
+
+        // Decode the base64 string to binary
+        const decodedFile = decode(imageFile);
+
+        // Upload to Supabase storage
+        const { data, error: uploadError } = await supabase.storage
+          .from("hostels_2")
+          .upload(fileName, decodedFile, { contentType: "image/jpeg", upsert: true });
+
+        if (uploadError) {
+          console.error("Upload error:", uploadError.message);
+          throw new Error(uploadError.message);
+        }
+
+        console.log("File uploaded successfully:", data);
+
+        // Get the public URL of the uploaded file
+        const { publicURL, error: urlError } = supabase.storage
+          .from("hostels_2")
+          .getPublicUrl(data.path);
+
+        if (urlError) {
+          console.error("Error getting public URL:", urlError.message);
+          throw new Error(urlError.message);
+        }
+
+        formattedHostel.imageUrl = `https://seqmuvembwjhrrevewxr.supabase.co/storage/v1/object/public/hostels_2/${fileName}`; // Store the public URL in hostel data
+        console.log("Public URL:", formattedHostel.imageUrl);
+      }
+
       await AddHostel(ownerid, formattedHostel); // Call the backend function
       alert("Hostel added successfully");
+
+      // Reset the form after successful submission
+      setHostel({
+        hostelname: "",
+        description: "",
+        addressline1: "",
+        addressline2: "",
+        city: "",
+        pincode: "",
+        state: "",
+        capacity: "",
+        type: "",
+        contactnumber: "",
+        gender: "",
+        imageUrl: "",
+      });
+      setImageFile(null); // Reset the image file
     } catch (error) {
       console.error("Error adding hostel:", error);
       setError("Failed to add hostel. Please try again.");
@@ -86,6 +225,19 @@ function AddNewHostel() {
     }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]; // Capture the selected file
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = function () {
+      const base64String = fileReader.result.split(",")[1]; // Extract base64 string
+      setImageFile(base64String); // Store base64 string
+    };
+
+    fileReader.readAsDataURL(file); // Read the file as a data URL
+  };
+
+
   const handleRadioChange = (e) => {
     const { name, value } = e.target;
     setHostel((prevHostel) => ({
@@ -95,9 +247,10 @@ function AddNewHostel() {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-gray-100 flex flex-col">
-     
-
+      <Navbar /> {/* Add Navbar if necessary */}
       <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold text-center mb-6">Add New Hostel</h1>
         {error && (
@@ -142,6 +295,17 @@ function AddNewHostel() {
             />
           </div>
 
+          {/* File input for image upload */}
+          <div>
+            <label className="block text-gray-700 font-medium">Upload Hostel Image</label>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="mt-1 w-full px-4 py-2 border rounded-md"
+            />
+          </div>
+
+          {/* Remaining form fields */}
           <div>
             <label className="block text-gray-700 font-medium">Address Line 1</label>
             <input
@@ -157,7 +321,7 @@ function AddNewHostel() {
             <label className="block text-gray-700 font-medium">Address Line 2</label>
             <input
               type="text"
-              name="addressline1"
+              name="addressline2"
               value={hostel.addressline2}
               onChange={handleChange}
               className="mt-1 w-full px-4 py-2 border rounded-md"
@@ -232,69 +396,73 @@ function AddNewHostel() {
                   <input
                     type="radio"
                     name="type"
-                    value="PG"
-                    checked={hostel.type === "PG"}
+                    value="payingGuest"
+                    checked={hostel.type === "payingGuest"}
                     onChange={handleRadioChange}
                     className="form-radio text-blue-500"
                   />
-                  <span className="ml-2">PG</span>
+                  <span className="ml-2">Paying Guest</span>
                 </label>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-gray-700 font-medium">Gender</label>
-              <div className="flex items-center mt-1">
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="boys"
-                    checked={hostel.gender === "boys"}
-                    onChange={handleRadioChange}
-                    className="form-radio text-blue-500"
-                  />
-                  <span className="ml-2">Boys</span>
-                </label>
-                <label className="inline-flex items-center ml-4">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="girls"
-                    checked={hostel.gender === "girls"}
-                    onChange={handleRadioChange}
-                    className="form-radio text-blue-500"
-                  />
-                  <span className="ml-2">Girls</span>
-                </label>
-                <label className="inline-flex items-center ml-4">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="mixed"
-                    checked={hostel.gender === "mixed"}
-                    onChange={handleRadioChange}
-                    className="form-radio text-blue-500"
-                  />
-                  <span className="ml-2">Mixed</span>
-                </label>
-              </div>
+          <div>
+            <label className="block text-gray-700 font-medium">Gender</label>
+            <div className="flex items-center mt-1">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  checked={hostel.gender === "male"}
+                  onChange={handleRadioChange}
+                  className="form-radio text-blue-500"
+                />
+                <span className="ml-2">Male</span>
+              </label>
+              <label className="inline-flex items-center ml-4">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  checked={hostel.gender === "female"}
+                  onChange={handleRadioChange}
+                  className="form-radio text-blue-500"
+                />
+                <span className="ml-2">Female</span>
+              </label>
+              <label className="inline-flex items-center ml-4">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="mixed"
+                  checked={hostel.gender === "mixed"}
+                  onChange={handleRadioChange}
+                  className="form-radio text-blue-500"
+                />
+                <span className="ml-2">Mixed</span>
+              </label>
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-200"
-          >
-            {loading ? "Adding Hostel..." : "Add Hostel"}
-          </button>
+          <div className="flex justify-center mt-4">
+            <button
+              type="submit"
+              className={`px-4 py-2 text-white font-bold rounded ${
+                loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+              }`}
+              disabled={loading}
+            >
+              {loading ? "Adding..." : "Add Hostel"}
+            </button>
+          </div>
         </form>
       </div>
-
       
     </div>
+    <Footer />
+    </>
   );
 }
 
