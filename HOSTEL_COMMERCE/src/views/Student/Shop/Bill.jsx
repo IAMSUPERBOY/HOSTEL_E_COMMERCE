@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Get_Cart, Prod_details } from "../../../backend/Product/controller";
+import { Get_Cart, Prod_details, Delete_Cart_Items } from "../../../backend/Product/controller";
 import { Gen_Bill } from "../../../backend/Student/controller";
 import Invoice from "./Invoice";
 import credentials from "../../../credentials.json";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 export default function Bill() {
   const [bill, setBill] = useState(0);
   const [cart, setCart] = useState([]);
+  const navigate = useNavigate(); // Using useNavigate instead of useHistory
 
   useEffect(() => {
     const fetchCartDetails = async () => {
@@ -39,19 +41,32 @@ export default function Bill() {
       setBill(total);
     });
   }, []);
- 
+
+  const handleGoBack = async () => {
+    try {
+      const cartData = await Get_Cart(credentials.studentid);
+
+      if (cartData.length > 0) {
+        const cartId = cartData[0].cartid;
+        await Delete_Cart_Items(cartId); // Delete items for this cart ID
+        console.log("Cart items deleted successfully.");
+      }
+      
+      navigate("/Student"); // Using navigate instead of history.push
+    } catch (error) {
+      console.error("Error deleting cart items:", error);
+    }
+  };
 
   return (
     <div>
       <Invoice totalP={bill} products={cart} />
-      <Link to="/Student">
       <button
+        onClick={handleGoBack}
         className="bg-gray-500 text-white font-bold py-2 px-4 rounded-full mt-4"
       >
         Go Back to Home
       </button>
-      </Link>
     </div>
-    
   );
 }

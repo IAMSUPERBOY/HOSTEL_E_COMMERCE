@@ -21,7 +21,8 @@ function AddNewHostel() {
     type: "",
     contactnumber: "",
     gender: "",
-    imageUrl: "", // To store the URL of the uploaded image
+    imageUrl: "",
+    startingprice:"" // To store the URL of the uploaded image
   });
   const [imageFile, setImageFile] = useState(null); // State to hold the selected file
   const [loading, setLoading] = useState(false);
@@ -39,6 +40,7 @@ function AddNewHostel() {
       "type",
       "description",
       "contactnumber",
+      "startingprice"
     ];
 
     for (let field of requiredFields) {
@@ -149,6 +151,7 @@ function AddNewHostel() {
       capacity: parseInt(hostel.capacity, 10),
       pincode: parseInt(hostel.pincode, 10),
       rating: 0,
+      startingprice:parseInt(hostel.startingprice,10)
     };
 
     if (!validateInputs()) {
@@ -166,7 +169,7 @@ function AddNewHostel() {
 
         // Upload to Supabase storage
         const { data, error: uploadError } = await supabase.storage
-          .from("hostels_2")
+          .from("hostel")
           .upload(fileName, decodedFile, { contentType: "image/jpeg", upsert: true });
 
         if (uploadError) {
@@ -178,7 +181,7 @@ function AddNewHostel() {
 
         // Get the public URL of the uploaded file
         const { publicURL, error: urlError } = supabase.storage
-          .from("hostels_2")
+          .from("hostel")
           .getPublicUrl(data.path);
 
         if (urlError) {
@@ -186,7 +189,7 @@ function AddNewHostel() {
           throw new Error(urlError.message);
         }
 
-        formattedHostel.imageUrl = `https://seqmuvembwjhrrevewxr.supabase.co/storage/v1/object/public/hostels_2/${fileName}`; // Store the public URL in hostel data
+        formattedHostel.imageUrl = `https://sdspzxoxvksccuaglgjs.supabase.co/storage/v1/object/public/hostel/${fileName}`; // Store the public URL in hostel data
         console.log("Public URL:", formattedHostel.imageUrl);
       }
 
@@ -207,6 +210,7 @@ function AddNewHostel() {
         contactnumber: "",
         gender: "",
         imageUrl: "",
+        startingprice:""
       });
       setImageFile(null); // Reset the image file
     } catch (error) {
@@ -378,6 +382,18 @@ function AddNewHostel() {
                 placeholder="Enter capacity"
               />
             </div>
+            <div>
+              <label className="block  font-medium">StartingPrice</label>
+              <input
+                type="text"
+                name="startingprice"
+                value={hostel.startingprice}
+                onChange={handleChange}
+                className="mt-1 w-full px-4 py-2 border rounded-md"
+                
+              />
+            </div>
+           
             <div>
               <label className="block text-gray-700 font-medium">Hostel Type</label>
               <div className="flex items-center mt-1">

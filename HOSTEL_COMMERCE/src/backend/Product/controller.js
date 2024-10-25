@@ -97,3 +97,25 @@ export const Prod_details = async (productid) => {
   }
   return product[0];
 };
+
+
+// backend/Product/controller.js
+
+
+export const Delete_Cart_Items = async (cartId) => {
+  try {
+    const { error } = await supabase
+      .from("cart_items")
+      .delete()
+      .eq("cartid", cartId); // Deletes all rows with the matching cartid
+
+    if (error) throw error;
+
+    console.log("Cart items deleted successfully.");
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting cart items:", error);
+    return { success: false, error: error.message };
+  }
+};
+
