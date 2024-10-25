@@ -26,7 +26,7 @@ const Invoice = ({totalP,products}) => {
                 Product Name
               </th>
               <th className="py-3 px-5 text-right text-gray-700 uppercase tracking-wide border-b">
-                Price ($)
+                Price (₹)
               </th>
             </tr>
           </thead>
@@ -45,7 +45,7 @@ const Invoice = ({totalP,products}) => {
       {/* Total Price */}
       <div className="flex justify-between items-center py-5 mt-5 border-t">
         <span className="font-semibold text-lg">Total:</span>
-        <span className="text-lg font-semibold">${totalP.toFixed(2)}</span>
+        <span className="text-lg font-semibold">{totalP.toFixed(2)}</span>
       </div>
 
       {/* Thank You Message */}

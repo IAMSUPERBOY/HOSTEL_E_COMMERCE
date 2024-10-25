@@ -71,6 +71,7 @@ export async function AddUsedProduct(owner) {
       category: owner.category,
       price: owner.price,
       studentid: owner.studentid,
+      imageUrl:owner.imageUrl
     },
   ]);
 

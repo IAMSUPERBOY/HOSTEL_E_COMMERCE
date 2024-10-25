@@ -109,6 +109,8 @@ export async function AddHostel(ownerid, hostel) {
       rating: hostel.rating,
       gender: hostel.gender,
       description: hostel.description,
+      imageUrl:hostel.imageUrl,
+      startingprice:hostel.startingprice,
     },
   ]);
 
@@ -135,6 +137,9 @@ export async function EditHostel(hostelid, hostel) {
       contactnumber: hostel.contactnumber,
       gender: hostel.gender,
       description: hostel.description,
+      imageUrl:hostel.imageUrl,
+      startingprice:hostel.startingprice,
+      
     })
     .eq("hostelid", hostelid);
 

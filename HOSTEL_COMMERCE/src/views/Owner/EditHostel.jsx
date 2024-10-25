@@ -21,6 +21,7 @@ function EditHostelDetails() {
     gender: "",
     rating: "",
     imageUrl: "",
+    startingprice:""
   });
 
   const [loading, setLoading] = useState(false);
@@ -36,6 +37,7 @@ function EditHostelDetails() {
       ...hostel,
       capacity: parseInt(hostel.capacity, 10),
       pincode: parseInt(hostel.pincode, 10),
+      startingprice:parseInt(hostel.startingprice,10)
     };
 
     const validateInputs = () => {
@@ -50,6 +52,7 @@ function EditHostelDetails() {
         "type",
         "description",
         "contactnumber",
+        "startingprice"
       ];
 
       for (let field of requiredFields) {
@@ -74,7 +77,7 @@ function EditHostelDetails() {
         const decodedFile = decode(imageFile);
 
         const { data, error: uploadError } = await supabase.storage
-          .from("hostels_2")
+          .from("hostel")
           .upload(fileName, decodedFile, { contentType: "image/jpeg", upsert: true });
 
         if (uploadError) {
@@ -85,7 +88,7 @@ function EditHostelDetails() {
         console.log("File uploaded successfully:", data);
 
         const { publicURL, error: urlError } = supabase.storage
-          .from("hostels_2")
+          .from("hostel")
           .getPublicUrl(data.path);
 
         if (urlError) {
@@ -93,7 +96,7 @@ function EditHostelDetails() {
           throw new Error(urlError.message);
         }
 
-        formattedHostel.imageUrl = `https://seqmuvembwjhrrevewxr.supabase.co/storage/v1/object/public/hostels_2/${fileName}`;
+        formattedHostel.imageUrl = `https://sdspzxoxvksccuaglgjs.supabase.co/storage/v1/object/public/hostel/${fileName}`;
         console.log("Public URL:", formattedHostel.imageUrl);
       }
 
@@ -112,6 +115,7 @@ function EditHostelDetails() {
         contactnumber: "",
         gender: "",
         imageUrl: "",
+        startingprice:""
       });
 
       setImageFile(null);
@@ -255,6 +259,18 @@ function EditHostelDetails() {
         </div>
 
         <div>
+              <label className="block  font-medium">StartingPrice</label>
+              <input
+                type="text"
+                name="startingprice"
+                value={hostel.startingprice}
+                onChange={handleChange}
+                className="mt-1 w-full px-4 py-2 border rounded-md"
+                
+              />
+            </div>
+
+        <div>
           <label className="block text-sm font-medium">Upload Hostel Image</label>
           <input
             type="file"
@@ -297,25 +313,25 @@ function EditHostelDetails() {
             <input
               type="radio"
               name="gender"
-              value="male"
-              checked={hostel.gender === "male"}
+              value="boys"
+              checked={hostel.gender === "boys"}
               onChange={handleRadioChange}
               className="mr-2"
               required
             />
-            Male
+            Boys
           </label>
           <label className="flex items-center">
             <input
               type="radio"
               name="gender"
-              value="female"
-              checked={hostel.gender === "female"}
+              value="girls"
+              checked={hostel.gender === "girls"}
               onChange={handleRadioChange}
               className="mr-2"
               required
             />
-            Female
+            Girls
           </label>
           <label className="flex items-center">
             <input
