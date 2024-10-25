@@ -29,7 +29,7 @@ export const HostelList = () => {
             <img
               src={hostel.imageUrl}
               alt={hostel.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded"
             />
     </div> 
   {/* Placeholder for hostel image with increased width */}
@@ -48,7 +48,7 @@ export const HostelList = () => {
 
           <div className="flex space-x-2">
             <Link to={`/Owner/HostelDetails/${hostel.hostelid}`}>
-              <button className="bg-blue-500 text-white py-2 px-4 font-bold rounded hover:bg-blue-600">
+              <button className="bg-blue-500 text-white py-2  mr-5 px-4 font-bold rounded hover:bg-blue-600">
                 View
               </button>
             </Link>

@@ -48,7 +48,14 @@ export default function RequestPage() {
       let leavereq = data.filter(
         (item) => item.status === "pending" && item.type === "LeaveRequest"
       );
-      setLeave(leavereq);
+      ListHostel(credential.ownerid).then((hostel) => {
+        const join_updated = leavereq.filter((req) => 
+          hostel.some((hostelItem) => hostelItem.hostelid === req.hostelid)
+        );
+      
+        console.log(join_updated);
+        setLeave(join_updated);  
+      });
       const namesMap = {};
       for (let item of joinreq) {
         const name = await findName(item.studentid, item.hostelid);
