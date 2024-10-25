@@ -7,7 +7,8 @@ import './index.css';
 import ErrorPage from "./views/Owner/error-page.jsx";
 import Purachase_Page from "./views/Student/Shop/Purchase.jsx";
 import AddNewHostel from "./views/Owner/AddNewHostel";
-
+import LoginS from './views/LoginS.jsx'
+import LoginO from './views/LoginO.jsx'
 import OwnerHomePage from "./views/Owner/Homepage";
 import BuyItems from './views/Student/BuyItems.jsx';
 import OwnerStudentPage from "./views/OwnerStudentPage.jsx";
@@ -29,9 +30,20 @@ import AddNewRoom from "./views/Owner/AddNewRoom.jsx";
 import SellUsedGoods from './views/Student/StudentSell.jsx';
 
 function MainApp() {
+
   const [userType, setUserType] = useState(null); // Define userType and setUserType
 
   const router = createBrowserRouter([
+    {
+      path: "/LoginStudent",
+      element: <App page={LoginS} />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/LoginOwner",
+      element: <App page={LoginO} />,
+      errorElement: <ErrorPage />,
+    },
     {
       path: "/",
       element: <App page={OwnerStudentPage} setUserType={setUserType} />, // Pass setUserType
