@@ -14,7 +14,7 @@ function Homepage() {
           <div className="button-group">
           <Link to="/Student/FindHostel" ><button className="btn">FIND HOSTEL</button></Link>
           <Link to="/Student/Buy" ><button className="btn">BUY ITEMS</button></Link>
-            <button className="btn">SELL ITEMS</button>
+          <Link to="/Student/UsedSell" ><button className="btn">SELL ITEMS</button></Link>
           </div>
         </div>
       </div>

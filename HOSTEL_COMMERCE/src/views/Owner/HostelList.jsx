@@ -24,7 +24,7 @@ export const HostelList = () => {
           className="bg-white rounded-lg shadow-md p-4 mb-4 flex justify-between items-center"
         >
           <div className="flex items-center">
-            <div className="w-24 h-16 bg-gray-300 mr-4 rounded"></div>{" "}
+            <div className="w-24 h-16 bg-gray-300 mr-4 rounded"></div>
             {/* Placeholder for hostel image */}
             <div className="hostel-details">
               <h3 className="text-lg font-semibold">{hostel.hostelname}</h3>

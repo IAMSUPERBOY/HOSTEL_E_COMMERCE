@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { AddHostel } from "../../backend/Owner/controller";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import credentials from "../../credentials.json"
 
 function AddNewHostel() {
-  const ownerid = 1; // Temporarily hardcoded
+  const ownerid = credentials.ownerid; // Temporarily hardcoded
 
   const [hostel, setHostel] = useState({
     hostelname: "",
