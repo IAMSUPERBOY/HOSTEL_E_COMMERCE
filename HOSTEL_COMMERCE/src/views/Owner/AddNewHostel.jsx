@@ -253,8 +253,8 @@ function AddNewHostel() {
   return (
     <>
     <Navbar />
+    
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Navbar /> {/* Add Navbar if necessary */}
       <div className="container mx-auto p-6">
         <h1 className="text-3xl font-bold text-center mb-6">Add New Hostel</h1>
         {error && (
@@ -466,7 +466,7 @@ function AddNewHostel() {
             <button
               type="submit"
               className={`px-4 py-2 text-white font-bold rounded ${
-                loading ? "bg-gray-400" : "bg-blue-500 hover:bg-blue-600"
+                loading ? "bg-gray-400" : "bg-orange-950 hover:bg-yellow-600"
               }`}
               disabled={loading}
             >
@@ -477,7 +477,6 @@ function AddNewHostel() {
       </div>
       
     </div>
-    <Footer />
     </>
   );
 }

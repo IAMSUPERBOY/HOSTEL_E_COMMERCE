@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
 function Homepage() {
   return (
     <div className="app">
-      
+      <Navbar />
       <div className="hero-section">
         <div className="overlay">
           <h1>Find Your Perfect Hostel & Shop Second-hand Essentials</h1>

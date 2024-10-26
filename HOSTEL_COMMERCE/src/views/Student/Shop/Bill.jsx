@@ -4,6 +4,7 @@ import { Gen_Bill } from "../../../backend/Student/controller";
 import Invoice from "./Invoice";
 import credentials from "../../../credentials.json";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 
 export default function Bill() {
   const [bill, setBill] = useState(0);
@@ -59,14 +60,18 @@ export default function Bill() {
   };
 
   return (
-    <div>
+    <>
+    <Navbar />
+    <div className="h-screen flex flex-col items-center justify-center">
+      
       <Invoice totalP={bill} products={cart} />
-      <button
+      <button 
         onClick={handleGoBack}
         className="bg-gray-500 text-white font-bold py-2 px-4 rounded-full mt-4"
       >
         Go Back to Home
       </button>
     </div>
+    </>
   );
 }

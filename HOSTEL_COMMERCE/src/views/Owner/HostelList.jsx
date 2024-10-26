@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"; // Import useState from Reac
 import { ListHostel } from "../../backend/Owner/controller";
 import credentials from "../../credentials.json";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 export const HostelList = () => {
   const ownerid = credentials.ownerid;
   const [hostels, setHostels] = useState([]);
@@ -14,7 +15,10 @@ export const HostelList = () => {
   }, []);
 
   return (
+    <>
+    <Navbar />
     <div className="p-5 h-screen bg-gray-100">
+      
       <h2 key="bull" className="text-2xl font-bold mb-5">
         Manage Hostels
       </h2>
@@ -48,7 +52,7 @@ export const HostelList = () => {
 
           <div className="flex space-x-2">
             <Link to={`/Owner/HostelDetails/${hostel.hostelid}`}>
-              <button className="bg-blue-500 text-white py-2  mr-5 px-4 font-bold rounded hover:bg-blue-600">
+              <button className="bg-orange-950 text-white py-2  mr-5 px-4 font-bold rounded hover:bg-yellow-600 hover:text-black">
                 View
               </button>
             </Link>
@@ -59,6 +63,7 @@ export const HostelList = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

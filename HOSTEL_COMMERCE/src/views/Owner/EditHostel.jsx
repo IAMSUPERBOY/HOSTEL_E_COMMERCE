@@ -3,6 +3,7 @@ import { EditHostel } from "../../backend/Owner/controller";
 import { useParams } from "react-router-dom";
 import supabase from "../../backend/util/supabaseclient";
 import { decode } from "base64-arraybuffer";
+import Navbar from "./Navbar";
 
 function EditHostelDetails() {
   const { hostelid } = useParams();
@@ -156,8 +157,11 @@ function EditHostelDetails() {
   };
 
   return (
+    <>
+    <Navbar />
+    <div className="h-10"></div>
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <h1 className="text-xl font-semibold text-center mb-4">Edit Hostel</h1>
+      <h1 className="text-3xl font-semibold text-center mb-4">Edit Hostel</h1>
       <form className="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto space-y-4" onSubmit={handleSubmit}>
       
         <div>
@@ -366,12 +370,13 @@ function EditHostelDetails() {
         <button
           type="submit"
           disabled={loading}
-          className={`mt-4 w-full px-4 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 ${loading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"}`}
+          className={`mt-4 w-full px-4 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 ${loading ? "bg-orange-950" : "bg-orange-950 hover:bg-yellow-600 "}`}
         >
           {loading ? "Updating..." : "Update Hostel"}
         </button>
       </form>
     </div>
+    </>
   );
 }
 

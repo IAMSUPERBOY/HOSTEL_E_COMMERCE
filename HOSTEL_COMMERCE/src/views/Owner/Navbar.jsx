@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
-import logo1 from "../../assets/logo1.png"
+import logo1 from "../../assets/logofinal2.png"
 
 import AddNewHostel from "./AddNewHostel";
 
@@ -14,12 +14,11 @@ function Navbar() {
 
       <li><Link to="/Owner" className="nav-item">Home</Link></li>
       <li><Link to="/Owner/add" className="nav-item">Add Hostel</Link></li>
-        <li><a href="/Owner/" className="nav-item">Manage Hostels</a></li>
+      <li><Link to="/Owner/viewHostels" className="nav-item">Manage Hostel</Link></li>
 
-        <li><a href="#" className="nav-item">View Requests</a></li>
-        <li><a href="#" className="nav-item">About Us</a></li>
+      <li><Link to="/Owner/Applications" className="nav-item">View Request</Link></li>
       </ul>
-      <button className="login-btn">Login/Sign Up</button>
+      <Link to="/"><button className="login-btn">LogOut</button></Link>
     </nav>
   );
 }

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
 function OwnerHomepage() {
   return (
     <div className="app">
+      <Navbar />
       <div className="hero-section">
         <div className="overlay">
           <h1>Easily Manage Your Hostel Listings and Bookings</h1>

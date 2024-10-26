@@ -3,6 +3,7 @@ import "../../../src/App.css";
 import ItemCard from "../../components/ItemCard";
 import supabase from "../../backend/util/supabaseclient"; // Modify this path as per your setup
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 function BuyItems() {
   const [items, setItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -65,11 +66,13 @@ function BuyItems() {
   });
 
   return (
+    <>
+    <Navbar />
     <div className="find-container">
       <div className="hero-finder flex justify-between items-center">
   <h1 className="finder-title">BUY ITEMS</h1>
  <Link to="/Student/Checkout">
-  <button className="bg-blue-500 text-white px-4 py-2 m-5 rounded hover:bg-blue-600">
+  <button className="bg-yellow-600 text-black px-4 py-2 m-5 rounded hover:bg-yellow-900">
     Checkout
   </button>
  </Link>
@@ -123,6 +126,7 @@ function BuyItems() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

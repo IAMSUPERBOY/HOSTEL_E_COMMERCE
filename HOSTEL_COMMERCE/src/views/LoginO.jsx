@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import supabase from '../backend/util/supabaseclient';
 import { useNavigate } from 'react-router-dom';
+import logo from "../assets/logofinal2.png";
 export const Login = () => {
   
   const navigate = useNavigate();
@@ -61,11 +62,10 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 relative overflow-hidden">
+<div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-yellow-950 to-yellow-900 relative overflow-hidden">
       {/* Animated Background Circles */}
-      <div className="absolute w-72 h-72 bg-gradient-to-br from-pink-300 to-purple-300 rounded-full blur-3xl opacity-40 animate-pulse top-32 left-20"></div>
-      <div className="absolute w-96 h-96 bg-gradient-to-tl from-purple-300 to-blue-300 rounded-full blur-2xl opacity-40 animate-pulse bottom-32 right-20"></div>
-
+      <img className="w-48 h-auto" src={logo} alt="Logo" />
+        
       <div className="relative z-10 max-w-md w-full bg-white p-8 shadow-lg rounded-lg">
         <h2 className="text-3xl font-bold text-gray-800 text-center">Welcome Back Hostel Manager</h2>
         <p className="text-gray-500 text-center mb-6">Welcome back! Please enter your details.</p>
@@ -102,7 +102,7 @@ export const Login = () => {
           {/* Sign In Button */}
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+            className="w-full bg-orange-950 text-white py-2 px-4 rounded-md shadow-sm hover:bg-yellow-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
           >
             Sign in
           </button>
