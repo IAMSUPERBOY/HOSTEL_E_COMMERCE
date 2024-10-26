@@ -5,6 +5,7 @@ import { GetHostel,GetRooms } from "../../backend/Owner/controller";
 import { useParams,useNavigate } from "react-router-dom";
 import credentials from "../../credentials.json";
 //import { checkUser } from "../../backend/util/checkUser";
+import Navbar from "./Navbar";
 
 const studentid=credentials.studentid;
 export const HostelView = () => {
@@ -147,6 +148,8 @@ export const HostelView = () => {
 
   // Render the hostel name and form once data is available
   return (
+    <>
+    <Navbar />
     <div className="flex h-screen justify-between p-5 bg-gray-50">
       {/* Left section with hostel details */}
       <div className="w-3/5 p-6">
@@ -239,7 +242,7 @@ export const HostelView = () => {
             </select>
             <button
               type="submit"
-              className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-900 font-bold transition duration-300"
+              className="bg-orange-950 text-white py-2 px-4 rounded-md hover:bg-yellow-600 font-bold transition duration-300 hover:text-black"
             >
               REQUEST
             </button>
@@ -251,6 +254,7 @@ export const HostelView = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

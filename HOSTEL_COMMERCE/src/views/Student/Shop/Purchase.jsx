@@ -3,6 +3,7 @@ import ProductCard from "../../../components/ProductCard";
 import { Product_List_Vendors } from "../../../backend/Product/controller";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar";
 let Prod_List;
 export default function Purachase_Page({studentid}) {
     const routeState = {
@@ -18,6 +19,7 @@ export default function Purachase_Page({studentid}) {
   routeState.id=1;
   return (
     <div>
+      
         <Link to='/Student/Checkout' className='font-bold' state={routeState}>Checkout</Link>
       {prods.map((data,index) => {
         return (

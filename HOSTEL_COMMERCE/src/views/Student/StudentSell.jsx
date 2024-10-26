@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import credentials from "../../credentials.json";
 import { decode } from "base64-arraybuffer";
-import { createClient } from "@supabase/supabase-js";
 import { AddUsedProduct } from "../../backend/Student/controller";
+import Navbar from "./Navbar";
 
 import supabase from "../../backend/util/supabaseclient";
 export const SellUsedGoods = () => {
@@ -112,6 +112,8 @@ export const SellUsedGoods = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="max-w-2xl mx-auto bg-white p-5 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold mb-4">Sell Your Used Goods</h1>
       {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -195,13 +197,14 @@ export const SellUsedGoods = () => {
 
         <button
           type="submit"
-          className="w-full mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="w-full mt-4 bg-orange-950 text-white py-2 px-4 rounded hover:bg-yellow-600 hover:text-black"
           disabled={loading}
         >
           {loading ? "Listing Product..." : "List Product"}
         </button>
       </form>
     </div>
+    </>
   );
 };
 

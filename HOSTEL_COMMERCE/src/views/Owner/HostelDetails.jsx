@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetHostel, GetRooms } from "../../backend/Owner/controller";
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export const HostelDetails = () => {
   const [hostel, setHostel] = useState(null); // Initialize state to null
@@ -34,12 +35,15 @@ export const HostelDetails = () => {
 
   // Once hostel data is available, render the details
   return (
+    <>
+    <Navbar />
     <div className="flex min-h-screen justify-between p-5  rounded-lg my-5">
       {/* Left section with hostel details */}
       <div className="w-3/5">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">{hostel[0].hostelname}</h1>
+          <h1 className="text-5xl font-bold text-orange-950 ">{hostel[0].hostelname}</h1>
         </div>
+        <div className="h-10"></div>
 
         <div className="w-screen  rounded-lg  overflow-hidden">
           <div className="w-full h-96 overflow-hidden rounded-lg shadow-lg">
@@ -49,7 +53,7 @@ export const HostelDetails = () => {
               className="w-full h-full object-cover"
             />
           </div>
-
+          <div className="h-10"></div>
           <div className="px-8 py-6 ">
             <p className="text-lg text-gray-700 mb-4">
               {hostel[0].description}
@@ -73,7 +77,7 @@ export const HostelDetails = () => {
               {rooms.map((room) => (
                 <div
                   key={room.id}
-                  className="bg-white p-4 rounded-lg text-center shadow-md w-36"
+                  className="bg-white p-4 rounded-lg text-center shadow-md w-36 border border-black"
                 >
                   {/* <div className="w-28 h-24 bg-gray-300 mb-3"></div> */}
 
@@ -86,7 +90,7 @@ export const HostelDetails = () => {
               ))}
               <div className="flex items-center justify-center">
                 <Link to={`/Owner/AddRooms/${hostel[0].hostelid}`}>
-                  <button className="bg-green-500 text-white py-2 px-4 font-bold rounded-md hover:bg-green-600">
+                  <button className="bg-orange-950 text-white py-2 px-4 font-bold rounded-md  hover:bg-yellow-600 hover:text-black">
                     + Add Room
                   </button>
                 </Link>
@@ -96,11 +100,12 @@ export const HostelDetails = () => {
         )}
       </div>
       <Link to={`/Owner/EditHostels/${hostel.hostelid}`}>
-        <button className="bg-orange-500 text-white py-2 mr-6 px-4 rounded-md hover:bg-orange-600">
+        <button className="bg-orange-950 text-white py-2 mr-6 px-4 rounded-md hover:bg-yellow-600 hover:text-black">
           Edit Hostel
         </button>
       </Link>
     </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import HostelCard from "../../components/HostelCard";
 import HostelDetails from "../../components/HostelDetails";
 import { useNavigate } from 'react-router-dom';
 import supabase from "../../backend/util/supabaseclient";
+import Navbar from './Navbar';
 
 function FindHostel() {
   const navigate=useNavigate();
@@ -59,6 +60,8 @@ function FindHostel() {
   );
 
   return (
+    <>
+    <Navbar />
     <div className="find-container">
       <div className="hero-finder">
         <h1 className="finder-title">FIND NEW HOSTEL</h1>
@@ -109,6 +112,7 @@ function FindHostel() {
 
       
     </div>
+    </>
   );
 }
 

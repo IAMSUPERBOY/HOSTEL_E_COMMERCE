@@ -16,14 +16,14 @@ export default function CartItem({productid}) {
           alt="Product Image"
           className="w-1/4 h-1/2 block p-5 object-cover"
         />
-        <div className="p-4 border-solid bg-slate-400 m-6 rounded-lg">
+        <div className="p-4 border-solid bg-yellow-200 m-6 rounded-lg">
           <h2 className="text-lg font-semibold">{prod.productname }</h2>
           <p className="text-gray-500">{prod.category}</p>
           <div className="flex items-center justify-between mt-4">
-            <p className="text-lg font-semibold text-blue-500">{prod.price}</p>
+            <p className="text-lg font-semibold text-orange-950">{prod.price}</p>
             <div className="flex items-center ml-5">
-              <span className="text-white mr-2">M.R.P:</span>
-              <span className="text-white ">₹{prod.price}</span>
+              <span className="text-black mr-2">M.R.P:</span>
+              <span className="text-black ">₹{prod.price}</span>
             </div>
           </div>
         </div>

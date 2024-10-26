@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../Navbar";
 
 const Invoice = ({totalP,products}) => {
   // Sample data for products
@@ -11,6 +12,8 @@ const Invoice = ({totalP,products}) => {
   // Calculate total price
 
   return (
+    <>
+    
     <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Invoice</h2>
 
@@ -53,6 +56,7 @@ const Invoice = ({totalP,products}) => {
         <p className="text-xl font-medium text-gray-600">Thank you for your purchase!</p>
       </div>
     </div>
+        </>
   );
 };
 

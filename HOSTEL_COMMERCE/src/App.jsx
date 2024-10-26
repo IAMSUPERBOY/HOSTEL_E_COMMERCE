@@ -1,7 +1,7 @@
 import { useState } from "react";
 import OwnerNavbar from "./views/Owner/Navbar";
 import StudentNavbar from "./views/Student/Navbar";
-import Footer from "./views/Student/Footer"; // Assuming both Owner and Student have the same Footer
+import Footer from "./views/Owner/Footer"; // Assuming both Owner and Student have the same Footer
 import OwnerHomePage from "./views/Owner/Homepage";
 import StudentHomePage from "./views/Student/Homepage";
 import OwnerStudentPage from "./views/OwnerStudentPage.jsx"; // This is where setUserType is used
@@ -26,11 +26,10 @@ function App({ page: PageComponent }) {
 
   return (
     <>
-      {!isOwnerStudentPage && renderNavbar()} {/* Render Navbar based on user type */}
       {PageComponent && (
         <PageComponent setUserType={setUserType} /> 
       )}
-      {!isOwnerStudentPage && <Footer />} {/* Render Footer only if it's not OwnerStudentPage */}
+      { <Footer />} {/* Render Footer only if it's not OwnerStudentPage */}
     </>
   );
 }

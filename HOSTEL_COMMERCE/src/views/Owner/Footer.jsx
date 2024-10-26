@@ -5,12 +5,11 @@ function Footer() {
     <footer className="footer">
       <div className="contact-info">
       <p style={{ fontWeight: '900' }}>CONTACT US</p>
-        <p>Telegram | Instagram</p>
-        <p>Email: amal@gmail.com</p>
+        <p>Email: hostelohub@gmail.com</p>
         <p>Phone: 55652165465</p>
       </div>
       <div className="copyright">
-        <p>&copy;2024 IEEE. All rights reserved</p>
+        <p>&copy;2024 HOSTELOHUB. All rights reserved</p>
       </div>
     </footer>
   );
